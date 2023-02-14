@@ -1,0 +1,28 @@
+table{
+  width: 80%;
+  display: inline flexbox;
+  th,tr,td{
+    width: 0%;
+    text-align: center;
+    div{
+      height: 250px;
+      p{
+        text-align: left;
+        width: 100%;
+      }
+    }
+  }
+}
+table textarea{
+    background-color: #42423E ;
+    color: antiquewhite;
+    border: solid white 1px;
+}
+.subtitle{
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  img{
+    height: 180px;
+  }
+}

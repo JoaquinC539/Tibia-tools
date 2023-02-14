@@ -1,0 +1,23 @@
+
+<h1>Rotations, Modifier  and Mana efficiency Calculations</h1>
+
+  <mat-form-field appearance="fill" class="selector" >
+    <mat-label>Select a class</mat-label>
+    <mat-select [(value)]="vocation">
+      <mat-option value="Knight">Knight</mat-option>
+      <mat-option value="Paladin">Paladin</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<div class="content">
+  <span class="tables-container">
+<app-knight-rot *ngIf="vocation==='Knight'" ></app-knight-rot>
+<app-pala-spells *ngIf="vocation==='Paladin'"></app-pala-spells>
+</span>
+</div>
+<h2>Rotations</h2>
+<app-knightrot *ngIf="vocation==='Knight'"></app-knightrot>
+<app-paladinrot *ngIf="vocation==='Paladin'"></app-paladinrot>
+
+
+

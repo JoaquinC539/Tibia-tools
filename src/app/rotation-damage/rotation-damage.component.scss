@@ -1,0 +1,32 @@
+*{
+  box-sizing: border-box;
+
+}
+.rotations {
+  display: flex;
+  justify-content: space-between;
+
+  table {
+    width: 38%;
+    td,th{
+      width: 75px;
+      text-align: center;
+      border: 1px solid #c2185b;
+    }
+    td{
+      height: 53px;
+    }
+  }
+
+
+
+}
+.selector {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  align-items: center;
+}
+
+
+

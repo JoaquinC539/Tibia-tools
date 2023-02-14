@@ -1,0 +1,32 @@
+.rotations {
+  display: flex;
+  justify-content: space-between;
+
+  table {
+    width: 80%;
+    .supportHead{
+      width: 25%;
+    }
+    td{
+      width: 75px;
+      height: 53px;
+      text-align: center;
+      border: 1px solid #c2185b;
+    }
+    th{
+      text-align: center;
+      border: 1px solid #c2185b;
+
+    }
+
+  }
+  .selector {
+    width: 15%;
+    margin:5px;
+  }
+
+  .buttons {
+    width: 20%;
+
+  }
+}

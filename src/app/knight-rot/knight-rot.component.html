@@ -1,0 +1,97 @@
+
+<!---------------------------------Knight type spells-------------------------------------------------------->
+
+<ng-container class="wrapper" >
+  <h1 class="vocTitle">Elite Knight</h1>
+  <h3>Mainstream spells </h3><br>
+  <div class="container">
+
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Select type of spell</mat-label>
+        <mat-select [(value)]="type">
+          <mat-option value="">None</mat-option>
+          <mat-option value="support">Support </mat-option>
+          <mat-option value="heal">Healing</mat-option>
+          <mat-option value="damage">Damage</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <!----------------------------------HEAL Table----------------------------------------------->
+    <ng-container  *ngIf="type==='heal'&&option==='Knight'" class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mana</th>
+            <th>Modifier</th>
+            <th>Cooldown</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let spell of kspells">
+            <ng-container *ngIf="spell.type===type">
+              <td>{{spell.name}}</td>
+              <td>{{spell.mana}}</td>
+              <td>{{spell.modifier}}x </td>
+              <td>{{spell.cooldown}} seconds</td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+<!--Knight Damage table-->
+<ng-container  *ngIf="type==='damage'&&option==='Knight'" class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mana</th>
+        <th>Modifier</th>
+        <th>Cooldown</th>
+        <th>Targets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let spell of kspells">
+        <ng-container *ngIf="spell.type===type">
+          <td>{{spell.name}}</td>
+          <td>{{spell.mana}}</td>
+          <td>{{spell.modifier}}x </td>
+          <td>{{spell.cooldown}} seconds</td>
+          <td>{{spell.targets}}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<!----Knight Suppor table-->
+<ng-container  *ngIf="type==='support'&&option==='Knight'" class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mana</th>
+        <th>Duratiion</th>
+        <th>Cooldown</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let spell of kspells">
+        <ng-container *ngIf="spell.type===type">
+          <td>{{spell.name}}</td>
+          <td>{{spell.mana}}</td>
+          <td>{{spell.duration}} </td>
+          <td>{{spell.cooldown}} seconds</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+    <ng-container ></ng-container>
+  </div>
+</ng-container>
+
+<!---->
+
+
+

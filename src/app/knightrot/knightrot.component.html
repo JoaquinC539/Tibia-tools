@@ -1,0 +1,37 @@
+<div class="rotations">
+  <table>
+    <tr>
+      <th>Spell</th>
+      <th>Support</th>
+      <th>Final Modifier</th>
+    </tr>
+    <tr>
+      <td ><ol><li *ngFor="let attack of selectedAttacks">{{attack}}</li></ol></td>
+      <td ><ol><li *ngFor="let suport of supportActive">{{suport}}</li></ol></td>
+      <td><ol><li *ngFor="let modifier of finalModifiers">{{modifier}}</li></ol></td>
+    </tr>
+  </table>
+    <span *ngIf="error" class="error-message">Cooldown not matching!</span>
+
+  <mat-form-field appearance="fill" class="selector">
+    <mat-label >Damage attacks</mat-label>
+    <mat-select  [(value)]="selectedAttack">
+      <mat-option *ngFor="let option of optionsName" [value]="option">{{option}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="selector">
+    <mat-label >Support</mat-label>
+    <mat-select  [(value)]="selectedSupport">
+      <mat-option *ngFor="let option of optionSName" [value]="option">{{option}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>final Modifier damage in the sequence: {{ModifierSum}}</p>
+  <p>Modifier per turn: {{AvgMod}}</p>
+    <ul class="buttons">
+      <li><button mat-raised-button (click)="addOptiontoArray()" >Add attack</button></li>
+      <li><button mat-raised-button (click)="popLastOptionArray()">Delete last attack</button></li>
+      <li><button mat-raised-button (click)="addSupportArray()">Add a support spell</button></li>
+
+    </ul>
+</div>
+

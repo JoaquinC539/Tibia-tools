@@ -1,0 +1,23 @@
+<h1 class="component_title">Loot Splitter</h1>
+
+<section>
+<table  class="loot-table">
+    <tr>
+      <th>Input</th>
+      <th>Loot splitting</th>
+    </tr>
+    <tr>
+      <td><textarea name="" id="" cols="35" rows="20" id="loot-input" [(ngModel)]="PartyLoot" #loot="ngModel" placeholder={{PartyLoot}}></textarea></td>
+      <td><div id="results">
+        <p *ngIf="empty" [innerHTML]="items"></p>
+      </div></td>
+    </tr>
+</table>
+</section><br>
+<section class="subtitle">
+  <h3 >How to submit the data?</h3>
+  <br><span><img src="../../assets/analyser.png" alt=""></span></section>
+
+
+
+
