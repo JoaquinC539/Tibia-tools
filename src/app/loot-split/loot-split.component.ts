@@ -8,9 +8,9 @@ import { prependOnceListener } from 'process';
   styleUrls: ['./loot-split.component.scss']
 })
 export class LootSplitComponent implements OnInit, DoCheck {
-  PartyLoot:String
+  PartyLoot:string
   empty:boolean;
-  LootSplit:String;
+  LootSplit:string;
   items:any;
   constructor(  ) {
     this.PartyLoot="";
@@ -25,12 +25,12 @@ export class LootSplitComponent implements OnInit, DoCheck {
     }else{
       this.empty=true;
       if(this.Linechecker(this.PartyLoot)){
-        this.LootSplit=this.LootSplitter(this.PartyLoot);
+        this.LootSplit=this.LootSplitterr(this.PartyLoot);
         this.items = this.LootSplit.split("\n").join("<br>");
       }
     }
   }
-  Linechecker(loot:String):Boolean{
+  Linechecker(loot:string):boolean{
     const lines=loot.split("\n");
     const firstLine=lines[0];
     const firstLineWords=firstLine.split(" ");
@@ -38,7 +38,76 @@ export class LootSplitComponent implements OnInit, DoCheck {
       return true;
     } else{ return false}
 }
-  LootSplitter(loot:String):String{
+  LootSplitterr(loot:string):string{
+    let output="";
+    //Catch exeptions to avoid crashing
+    try{
+       //Create an array to store important data
+       let persons=[];
+       //Split each line
+       let lines=loot.split("\n");
+       //Iterate to store in a json type object all the data and push it into an array
+       for(let i=6; i<lines.length;i+=6){
+        //Remove blank spaces
+        const name=lines[i].trim();
+        //Split as separator :
+        const lootA=lines[i+1].split(":")
+        //Take the number of the splitted loot
+        const loot=parseInt(lootA[1].trim().replace(",",""));
+        //Makes the same steps with supplies
+        const suppliesA=lines[i+2].split(":");
+        const supplies=parseInt(suppliesA[1].trim().replace(",",""));
+        //Calculate the balance using loot and supplies
+        const balance=loot-supplies;
+        //Store them in the array of every participant
+        persons.push({name,loot,supplies,balance})
+      }
+      //Calculate Party balance, Loot, and supplie using the data obtained before
+      let PartyBalance=0;
+      let PartyLoot=0;
+      for (const person of persons){
+        PartyBalance +=person.balance;
+        PartyLoot+=person.loot;
+      }
+      let PartySupplies=PartyLoot-PartyBalance;
+      //Calculate the profit per person or waste
+      const profitPerPerson=Math.floor(PartyBalance/persons.length);
+      //Save the profit per person as the first line
+      output+="Profit per person: "+profitPerPerson+"\n";
+      //Determine who has to pay and to be paid
+      console.log(persons);
+      for(let i=0;i<persons.length;i++){
+        //First calculate the final balance of every member
+        let expectedFinalBalance=persons[i].supplies+profitPerPerson;
+        //if balance of the person is higher than the expected final balance it is a payer
+        if(persons[i].balance>expectedFinalBalance){
+          //Put an extra tag to set them as payer or not
+          persons[i]={...persons[i],Payer:true};
+          //If not it has to be paid
+        }else{
+          persons[i]={...persons[i],Payer:false}
+        }
+      }
+      //Payers have to pay who has to be paid
+      for(let i=0;i<persons.length;i++){
+        let expectedFinalBalance=persons[i].supplies+profitPerPerson;
+        //If have to pay
+        if(persons[i].Payer===true){
+          //Calculate the amount to pay
+          let QuantityToPay=persons[i].balance-expectedFinalBalance;
+          //loop to check for every person
+          for( let j=0;j<persons.length;j++){
+            if(i===j)continue;
+            if(persons[j].Payer==false){
+
+            }
+          }
+        }/*The else goes here */
+      }
+    }catch(e){console.log(e)}
+  return output;
+}
+  LootSplitter(loot:string,toSaveMethod?:any):string{
     let output="";
     //Catch exeptions to avoid crashing
     try{
@@ -61,7 +130,6 @@ export class LootSplitComponent implements OnInit, DoCheck {
         //Store them in the array of every participant
         persons.push({name,loot,supplies,balance})
       }
-      console.log(persons);
       //Loop to get the party statistics
       let PartyBalance=0;
       let PartyLoot=0;
@@ -120,8 +188,11 @@ export class LootSplitComponent implements OnInit, DoCheck {
       console.log(e)
     }
     //Return the String builded with the payments according to the calculations
+
     return output;
   }
+
+
 }
 
 
