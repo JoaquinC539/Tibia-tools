@@ -1,27 +1,44 @@
-table{
-  width: 80%;
-  display: inline flexbox;
-  th,tr,td{
-    width: 0%;
-    text-align: center;
-    div{
-      height: 250px;
-      p{
-        text-align: left;
-        width: 100%;
-      }
+h1{
+  text-align: center;
+  padding: 15px 31px;
+}
+
+.loot-splitter{
+  margin-left: 15px;
+  padding: 11px 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+  align-content: center;
+  .text-input{
+    background-color: #998d8d;
+    width: 60%;
+    justify-self: center;
+    color: white;
+    font-weight: 500;
+    font-family: Roboto;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px#6b5e5e;
+  }
+  .results{
+    width: 69%;
+    background-color: #4e4a4a;
+    justify-self: center;
+    letter-spacing: 1px;
+    text-shadow: 1px;
+    p{
+      padding: 10px;
+      line-height: 27px;
     }
   }
-}
-table textarea{
-    background-color: #42423E ;
-    color: antiquewhite;
-    border: solid white 1px;
 }
 .subtitle{
   justify-content: center;
   text-align: center;
   padding: 20px;
+h3{
+font-size: 20px;
+}
   img{
     height: 180px;
   }

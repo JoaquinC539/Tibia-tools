@@ -1,18 +1,13 @@
 <h1 class="component_title">Loot Splitter</h1>
 
-<section>
-<table  class="loot-table">
-    <tr>
-      <th>Input</th>
-      <th>Loot splitting</th>
-    </tr>
-    <tr>
-      <td><textarea name="" id="" cols="35" rows="20" id="loot-input" [(ngModel)]="PartyLoot" #loot="ngModel" placeholder={{PartyLoot}}></textarea></td>
-      <td><div id="results">
+<section >
+  <div class="loot-splitter">
+
+      <textarea class="text-input"name="" id="" cols="35" rows="20" id="loot-input" [(ngModel)]="PartyLoot" #loot="ngModel" placeholder={{PartyLoot}}></textarea>
+      <div class="results">
         <p *ngIf="empty" [innerHTML]="items"></p>
-      </div></td>
-    </tr>
-</table>
+      </div>
+</div>
 </section><br>
 <section class="subtitle">
   <h3 >How to submit the data?</h3>
