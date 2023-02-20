@@ -1,7 +1,14 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { prependOnceListener } from 'process';
 
-
+interface Person{
+  name:string,
+  balance:number,
+  loot:number,
+  supplies:number,
+  Payer:boolean,
+  AmountToSpare:number,
+}
 @Component({
   selector: 'loot-split',
   templateUrl: './loot-split.component.html',
@@ -25,7 +32,7 @@ export class LootSplitComponent implements OnInit, DoCheck {
     }else{
       this.empty=true;
       if(this.Linechecker(this.PartyLoot)){
-        this.LootSplit=this.LootSplitterr(this.PartyLoot);
+        this.LootSplit=this.LootSplitter(this.PartyLoot);
         this.items = this.LootSplit.split("\n").join("<br>");
       }
     }
@@ -38,16 +45,32 @@ export class LootSplitComponent implements OnInit, DoCheck {
       return true;
     } else{ return false}
 }
-  LootSplitterr(loot:string):string{
+  LootSplitter(loot:string):string{
     let output="";
+    //Interface to create an object to store the data from the analyzer
+
     //Catch exeptions to avoid crashing
     try{
        //Create an array to store important data
-       let persons=[];
+       let persons:Person[]=[];
        //Split each line
        let lines=loot.split("\n");
+       //Get the Party Balance
+       let PartyBalance:any=lines[5].trim().split(":");
+       PartyBalance=parseInt(PartyBalance[1].replace(",",""));
+       //Calculate the profit per person or waste
+       //Get the number of persons
+       let numberOfPersons:number=0;
+       for(let i=6;i<lines.length;i+=6){
+        numberOfPersons++;
+       }
+       const profitPerPerson=Math.floor(PartyBalance/numberOfPersons);
+        //Save the profit per person as the first line
+      output+="Profit per person: "+profitPerPerson+"\n";
        //Iterate to store in a json type object all the data and push it into an array
        for(let i=6; i<lines.length;i+=6){
+        let Payer;
+        let AmountToSpare
         //Remove blank spaces
         const name=lines[i].trim();
         //Split as separator :
@@ -58,56 +81,87 @@ export class LootSplitComponent implements OnInit, DoCheck {
         const suppliesA=lines[i+2].split(":");
         const supplies=parseInt(suppliesA[1].trim().replace(",",""));
         //Calculate the balance using loot and supplies
-        const balance=loot-supplies;
-        //Store them in the array of every participant
-        persons.push({name,loot,supplies,balance})
-      }
-      //Calculate Party balance, Loot, and supplie using the data obtained before
-      let PartyBalance=0;
-      let PartyLoot=0;
-      for (const person of persons){
-        PartyBalance +=person.balance;
-        PartyLoot+=person.loot;
-      }
-      let PartySupplies=PartyLoot-PartyBalance;
-      //Calculate the profit per person or waste
-      const profitPerPerson=Math.floor(PartyBalance/persons.length);
-      //Save the profit per person as the first line
-      output+="Profit per person: "+profitPerPerson+"\n";
-      //Determine who has to pay and to be paid
-      console.log(persons);
-      for(let i=0;i<persons.length;i++){
-        //First calculate the final balance of every member
-        let expectedFinalBalance=persons[i].supplies+profitPerPerson;
-        //if balance of the person is higher than the expected final balance it is a payer
-        if(persons[i].balance>expectedFinalBalance){
-          //Put an extra tag to set them as payer or not
-          persons[i]={...persons[i],Payer:true};
-          //If not it has to be paid
+        const balanceA=lines[i+3].split(":");
+       const balance=parseInt(balanceA[1].trim().replace(",",""));
+       // const balance=loot-supplies;
+        //if balance is higher than the profit tag them as player and how much they have to pay or recieve otherwise
+        if(balance>profitPerPerson){
+          Payer=true;
+          AmountToSpare=balance-profitPerPerson;
+          const newPerson:Person={name,loot,supplies,balance,Payer,AmountToSpare}
+          persons.push(newPerson);
         }else{
-          persons[i]={...persons[i],Payer:false}
-        }
-      }
-      //Payers have to pay who has to be paid
-      for(let i=0;i<persons.length;i++){
-        let expectedFinalBalance=persons[i].supplies+profitPerPerson;
-        //If have to pay
-        if(persons[i].Payer===true){
-          //Calculate the amount to pay
-          let QuantityToPay=persons[i].balance-expectedFinalBalance;
-          //loop to check for every person
-          for( let j=0;j<persons.length;j++){
-            if(i===j)continue;
-            if(persons[j].Payer==false){
-
-            }
+          Payer=false;
+          if(balance<0){
+            AmountToSpare=(Math.abs(balance)+profitPerPerson)*-1
+            console.log(name,AmountToSpare);
+            const newPerson:Person={name,loot,supplies,balance,Payer,AmountToSpare}
+            persons.push(newPerson);
+          }else{
+            AmountToSpare=(profitPerPerson-balance)*-1
+            console.log(name,AmountToSpare);
+            const newPerson:Person={name,loot,supplies,balance,Payer,AmountToSpare}
+            persons.push(newPerson);
           }
-        }/*The else goes here */
-      }
+        }
+       }
+      //Call another method to make the output
+    output+=this.OutputLootSplitter(persons);
     }catch(e){console.log(e)}
+
   return output;
 }
-  LootSplitter(loot:string,toSaveMethod?:any):string{
+
+OutputLootSplitter(players:Person[]):string{
+    let output=""
+    //Loop trough everybody and check if it's marked with payer tag
+    //Doing the negative condition to avoid if hell
+    for(let i=0;i<players.length;i++){
+    //First check if it's a payer and has money
+    if(players[i].Payer===false ){
+      continue;
+    }
+    //Then loop for every person
+    for(let j=0;j<players.length;j++){
+      //If are the same person continue
+      if(i===j){
+
+          continue
+        }
+        //At this point only payers will be here so it has now to pay to need to be paid and check if the balance of the payer is more than 0
+        if(players[j].Payer===false && players[i].AmountToSpare>0){
+          //Then it has to pay to the paid person
+          let payment=players[j].AmountToSpare;
+          //If payer can pay completely then paid what it can
+          if(Math.abs(players[j].AmountToSpare)>players[i].AmountToSpare){
+
+            let payment=players[i].AmountToSpare;
+            //Pay and then modify the values of the amount of the paid and set the payer to 0 to spare
+            output+=players[i].name +" has to pay " +players[i].AmountToSpare+" gp to "+players[j].name+"\n";
+            players[j].AmountToSpare+=players[i].AmountToSpare;
+            players[i].AmountToSpare=0;
+
+          }else{
+
+            //If it has complete to pay then set the paid to 0 and reduce the payer
+            //Adding an if to avoid put in the output a payment of 0
+            if(Math.abs(players[j].AmountToSpare)===0){
+              continue;
+            }
+            output+=players[i].name +" has to pay " +Math.abs(players[j].AmountToSpare)+" gp to "+players[j].name+"\n";
+            players[i].AmountToSpare+=players[j].AmountToSpare;
+            players[j].AmountToSpare=0;
+          }
+
+        }
+      }
+    }
+
+      return output;
+    }
+
+
+  LootSplitterOld(loot:string,toSaveMethod?:any):string{
     let output="";
     //Catch exeptions to avoid crashing
     try{
