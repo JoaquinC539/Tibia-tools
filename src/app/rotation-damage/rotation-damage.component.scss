@@ -1,25 +1,7 @@
-*{
-  box-sizing: border-box;
-
-}
-.rotations {
-  display: flex;
-  justify-content: space-between;
-
-  table {
-    width: 38%;
-    td,th{
-      width: 75px;
-      text-align: center;
-      border: 1px solid #c2185b;
-    }
-    td{
-      height: 53px;
-    }
-  }
-
-
-
+h1,h2{
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 25px;
 }
 .selector {
   display: flex;
@@ -27,6 +9,11 @@
   padding: 1em;
   align-items: center;
 }
+.content{
+  width: 100%;
+}
+.knight-rot{
+  display: grid
 
-
+}
 

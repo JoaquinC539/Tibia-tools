@@ -1,25 +1,39 @@
-.rotations {
-  display: flex;
-  justify-content: space-between;
+.rotations{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px 7px;
+  .attacks-table{
+    width: 100%;
 
-  table {
-    width: 38%;
-    td,th{
-      width: 75px;
-      text-align: center;
-      border: 1px solid #c2185b;
-    }
-    td{
-      height: 53px;
+    border-collapse: collapse;
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      th,td{
+        border: solid 1px #c2185b;
+      }
     }
   }
-  .selector {
-    width: 15%;
-    margin:5px;
+  .modifiers{
+    justify-content: center;
   }
-
-  .buttons {
-    width: 20%;
-
+  .selectors{
+    width: 220px;
+  }
+  .buttons{
+    width: 150px;
+    align-items: baseline;
+    ul{
+      justify-items: left;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+      button{
+        width: 95%;
+      }
+    }
   }
 }

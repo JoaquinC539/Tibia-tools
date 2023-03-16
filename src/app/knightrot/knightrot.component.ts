@@ -14,8 +14,8 @@ export class KnightrotComponent implements OnInit {
   public optionsMana:number[]=[];
   public optionsModifer:number[]=[];
   public optionsTargets:number[]=[]
-  public selectedAttack:string="";
-  public selectedSupport:string="";
+  public selectedAttack:string="exori";
+  public selectedSupport:string="utito tempo";
   public optionSName:any[]=[];
   public optionSMana:any[]=[];
   public optionSDuration:any[]=[];

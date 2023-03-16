@@ -6,24 +6,26 @@ h1{
 .loot-splitter{
   margin-left: 15px;
   padding: 11px 14px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
   align-content: center;
   .text-input{
     background-color: #998d8d;
-    width: 60%;
+    width: 90%;
     justify-self: center;
+    align-self: center;
     color: white;
     font-weight: 500;
-    font-family: Roboto;
+    font-family: 'Roboto';
     letter-spacing: 1px;
     text-shadow: 1px 1px 1px#6b5e5e;
   }
   .results{
-    width: 69%;
+    width: 95%;
     background-color: #4e4a4a;
     justify-self: center;
+    align-self: center;
     letter-spacing: 1px;
     text-shadow: 1px;
     p{
@@ -41,5 +43,49 @@ font-size: 20px;
 }
   img{
     height: 180px;
+    width: 380px;
+  }
+}
+
+@media screen and (min-width:851px){
+  .loot-splitter{
+    margin-left: 15px;
+    padding: 11px 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    align-content: center;
+    .text-input{
+      background-color: #998d8d;
+      width: 60%;
+      justify-self: center;
+      color: white;
+      font-weight: 500;
+      font-family: Roboto;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 1px#6b5e5e;
+    }
+    .results{
+      width: 69%;
+      background-color: #4e4a4a;
+      justify-self: center;
+      letter-spacing: 1px;
+      text-shadow: 1px;
+      p{
+        padding: 10px;
+        line-height: 27px;
+      }
+    }
+  }
+  .subtitle{
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  h3{
+  font-size: 20px;
+  }
+    img{
+      height: 180px;
+    }
   }
 }

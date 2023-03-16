@@ -47,9 +47,7 @@ export class LootSplitComponent implements OnInit, DoCheck {
 }
   LootSplitter(loot:string):string{
     let output="";
-    //Interface to create an object to store the data from the analyzer
-
-    //Catch exeptions to avoid crashing
+     //Catch exeptions to avoid crashing
     try{
        //Create an array to store important data
        let persons:Person[]=[];
@@ -70,7 +68,7 @@ export class LootSplitComponent implements OnInit, DoCheck {
        //Iterate to store in a json type object all the data and push it into an array
        for(let i=6; i<lines.length;i+=6){
         let Payer;
-        let AmountToSpare
+        let AmountToSpare;
         //Remove blank spaces
         const name=lines[i].trim();
         //Split as separator :
@@ -84,7 +82,7 @@ export class LootSplitComponent implements OnInit, DoCheck {
         const balanceA=lines[i+3].split(":");
        const balance=parseInt(balanceA[1].trim().replace(",",""));
        // const balance=loot-supplies;
-        //if balance is higher than the profit tag them as player and how much they have to pay or recieve otherwise
+        //if balance is higher than the profit tag them as payer and how much they have to pay or recieve otherwise
         if(balance>profitPerPerson){
           Payer=true;
           AmountToSpare=balance-profitPerPerson;
@@ -94,21 +92,19 @@ export class LootSplitComponent implements OnInit, DoCheck {
           Payer=false;
           if(balance<0){
             AmountToSpare=(Math.abs(balance)+profitPerPerson)*-1
-            console.log(name,AmountToSpare);
             const newPerson:Person={name,loot,supplies,balance,Payer,AmountToSpare}
             persons.push(newPerson);
           }else{
             AmountToSpare=(profitPerPerson-balance)*-1
-            console.log(name,AmountToSpare);
             const newPerson:Person={name,loot,supplies,balance,Payer,AmountToSpare}
             persons.push(newPerson);
           }
         }
        }
+       const originalPersons = persons.slice();
       //Call another method to make the output
     output+=this.OutputLootSplitter(persons);
     }catch(e){console.log(e)}
-
   return output;
 }
 
@@ -125,7 +121,6 @@ OutputLootSplitter(players:Person[]):string{
     for(let j=0;j<players.length;j++){
       //If are the same person continue
       if(i===j){
-
           continue
         }
         //At this point only payers will be here so it has now to pay to need to be paid and check if the balance of the payer is more than 0
@@ -152,11 +147,9 @@ OutputLootSplitter(players:Person[]):string{
             players[i].AmountToSpare+=players[j].AmountToSpare;
             players[j].AmountToSpare=0;
           }
-
         }
       }
     }
-
       return output;
     }
 

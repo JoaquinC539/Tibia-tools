@@ -7,17 +7,18 @@
       <mat-option value="Knight">Knight</mat-option>
       <mat-option value="Paladin">Paladin</mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field><br>
 
 <div class="content">
-  <span class="tables-container">
-<app-knight-rot *ngIf="vocation==='Knight'" ></app-knight-rot>
-<app-pala-spells *ngIf="vocation==='Paladin'"></app-pala-spells>
-</span>
-</div>
-<h2>Rotations</h2>
+  <div class="tables-container">
+<app-knight-rot *ngIf="vocation==='Knight'" class="knight-rot" ></app-knight-rot><br>
+<app-pala-spells *ngIf="vocation==='Paladin'" class="pala-rot"></app-pala-spells><br>
+  </div>
+
+<h2>Rotations</h2><br>
 <app-knightrot *ngIf="vocation==='Knight'"></app-knightrot>
 <app-paladinrot *ngIf="vocation==='Paladin'"></app-paladinrot>
+</div>
 
 
 
