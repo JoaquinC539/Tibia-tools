@@ -141,13 +141,11 @@ export class KnightrotComponent implements OnInit {
     let currentTarget:number=this.optionsTargets.length-1;
     let targetHit:number=this.optionsTargets[currentTarget];
       if(this.supportActive[this.selectedAttacks.length-1]=="utito tempo"){
-        finalModifier=Math.ceil(baseModifier*1.4*10*targetHit)/10;
+        finalModifier=Math.ceil(baseModifier*1.35*10*targetHit)/10;
         this.finalModifiers.push(finalModifier);
-        console.log("pushed from utito")
       }else if(this.supportActive[this.selectedAttack.length-1]=="utamo tempo"){
         finalModifier=Math.ceil(baseModifier*0.65*10*targetHit)/10;
         this.finalModifiers.push(finalModifier);
-        console.log("pushed from utamo")
       }else{
         finalModifier=Math.ceil(baseModifier*targetHit*10)/10;
       this.finalModifiers.push(finalModifier);

@@ -17,8 +17,9 @@
   <div class="modifiers">
       <p>Final Modifier: {{ModifierSum}}</p>
       <p>Modifier per turn: {{AvgMod}}</p>
-      <label for="targets"></label>
-      <input type="number" [(ngModel)]="targets" name="targets">
+      Targets: <input type="number" [(ngModel)]="targets" name="targets" class="targets" >
+      <p class="anotation"><cite>Considerations: "utito tempo" boost damage 40% directly whereas "utamo tempo" reduce it 35% directly, as this damage
+         boost depends on base skills and not a direct damage boost. Use it as reference, as 1 skill point increase base damage by attack by one</cite></p>
   </div>
   <div class="selectors">
     <mat-form-field appearance="fill" >

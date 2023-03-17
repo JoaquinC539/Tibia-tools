@@ -18,6 +18,17 @@
   }
   .modifiers{
     justify-content: center;
+    input{
+      width: 30%;
+      background-color: rgb(95, 90, 90);
+      color:white;
+      font-weight: 400;
+      align-items: center;
+    }
+    .anotation{
+      width: 90%;
+      font-size: smaller;
+    }
   }
   .selectors{
     width: 220px;
