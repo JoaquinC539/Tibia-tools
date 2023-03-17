@@ -1,32 +1,48 @@
-.rotations {
-  display: flex;
-  justify-content: space-between;
+.rotations{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px 7px;
+  .attacks-table{
+    width: 100%;
 
-  table {
-    width: 80%;
-    .supportHead{
-      width: 25%;
-    }
-    td{
-      width: 75px;
-      height: 53px;
-      text-align: center;
-      border: 1px solid #c2185b;
-    }
-    th{
-      text-align: center;
-      border: 1px solid #c2185b;
+    border-collapse: collapse;
 
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      th,td{
+        border: solid 1px #c2185b;
+      }
     }
-
   }
-  .selector {
-    width: 15%;
-    margin:5px;
+  .modifiers{
+    justify-content: center;
   }
-
-  .buttons {
-    width: 20%;
-
+  .selectors{
+    width: 220px;
+  }
+  .buttons{
+    width: 150px;
+    align-items: baseline;
+    ul{
+      justify-items: left;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+      button{
+        width: 95%;
+      }
+    }
+  }
+}
+@media screen  and (min-width:573px){
+  .rotations{
+    width: 65%;
+    margin: 0 auto;
+    table{
+      width: 80%;
+    }
   }
 }
