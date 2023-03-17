@@ -47,12 +47,13 @@ font-size: 20px;
   }
 }
 
-@media screen and (min-width:851px){
+@media screen and (min-width:840px){
   .loot-splitter{
     margin-left: 15px;
     padding: 11px 14px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     grid-column-gap: 10px;
     align-content: center;
     .text-input{
@@ -64,6 +65,8 @@ font-size: 20px;
       font-family: Roboto;
       letter-spacing: 1px;
       text-shadow: 1px 1px 1px#6b5e5e;
+      grid-column: 1;
+
     }
     .results{
       width: 69%;
@@ -71,6 +74,8 @@ font-size: 20px;
       justify-self: center;
       letter-spacing: 1px;
       text-shadow: 1px;
+      grid-column: 2;
+      grid-row: 1;
       p{
         padding: 10px;
         line-height: 27px;

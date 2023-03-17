@@ -142,7 +142,6 @@ export class KnightrotComponent implements OnInit {
 
     this.ModifierSum=Math.ceil(this.finalModifiers.reduce((acc,current)=>acc+current,0)*10)/10
     this.AvgMod=Math.ceil((this.ModifierSum/this.finalModifiers.length)*10)/10;
-    console.log(this.ModifierSum,this.AvgMod)
   }
 
 }
