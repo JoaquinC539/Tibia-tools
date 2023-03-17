@@ -15,8 +15,11 @@
     <span *ngIf="error" class="error-message">Cooldown not matching!</span>
   </div>
   <div class="modifiers">
+
       <p>Final Modifier: {{ModifierSum}}</p>
       <p>Modifier per turn: {{AvgMod}}</p>
+      <label for="targets"></label>
+      <input type="number" [(ngModel)]="targets" name="targets">
   </div>
   <div class="selectors">
     <mat-form-field appearance="fill" >

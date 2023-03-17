@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KnightCalculations } from '../Services/knight';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-knightrot',
@@ -8,7 +9,7 @@ import { KnightCalculations } from '../Services/knight';
 })
 export class KnightrotComponent implements OnInit {
   public type:String;
-  public selectedAttacks:any[]=[]
+  public selectedAttacks:string[]=[]
   public optionsName:string[]=[];
   public optionsCooldown:number[]=[];
   public optionsMana:number[]=[];
@@ -24,6 +25,7 @@ export class KnightrotComponent implements OnInit {
   public finalModifiers:any[]=[];
   public ModifierSum:number=0;
   public AvgMod:number=0;
+  public targets:number=3;
   constructor(private Kspells:KnightCalculations) {
     this.type="";
    }
@@ -72,13 +74,13 @@ export class KnightrotComponent implements OnInit {
     if (this.supportActive.length == 0) {
       for (let i = 1; i < this.selectedAttacks.length; i++) {
         this.supportActive.push("");
-        this.calculateModifiers()
+
       }
 
     }else if(this.supportActive.length<this.selectedAttack.length){
       for( let i=0;i<this.selectedAttack.length-this.supportActive.length;i++){
         this.supportActive.push("");
-        this.calculateModifiers()
+
       }
     }{
      // Add the selected support to the supportActive array
@@ -86,13 +88,13 @@ export class KnightrotComponent implements OnInit {
     // Add empty strings to the supportActive array for each duration turn
     for (let i = 1; i <= duration; i++) {
       this.supportActive.push(this.selectedSupport);
-      this.calculateModifiers()
+
     }
     }
   }
   popLastOptionArray(){
     this.selectedAttacks.pop()
-    this.error=false
+    this.error=false;
   }
   Filloptions(spells:any[]){
     this.optionSDuration=[];
@@ -102,14 +104,14 @@ export class KnightrotComponent implements OnInit {
         this.optionsCooldown=[]
         this.optionsMana=[]
         this.optionsModifer=[]
-        this.optionsTargets=[]
+        // this.optionsTargets=[]
     for(let i=0;i<spells.length;i++){
       if(spells[i].type=="damage"   ){
         this.optionsName.push(spells[i].name);
         this.optionsCooldown.push(spells[i].cooldown);
         this.optionsMana.push(spells[i].mana);
         this.optionsModifer.push(spells[i].modifier);
-        this.optionsTargets.push(spells[i].targets)
+        // this.optionsTargets.push(spells[i].targets)
       }else if(spells[i].type=="support"){
         this.optionSName.push(spells[i].name);
         this.optionSMana.push(spells[i].mana);
@@ -119,27 +121,40 @@ export class KnightrotComponent implements OnInit {
   }
 
   calculateModifiers(){
-    this.finalModifiers=[];
-    this.ModifierSum=0;
-    //first find of each spell
-    for(let i=0;i<this.selectedAttacks.length;i++){
-      //find index of the spell
-      let finalModifier;
-      let index=this.optionsName.indexOf(this.selectedAttacks[i]);
-      //Get the modifier of the spell
-      let baseModifier=this.optionsModifer[index];
-      let targets=this.optionsTargets[index]
-      if(this.supportActive[i]=="utito tempo"){
-        finalModifier=Math.ceil(baseModifier*1.4*10*targets)/10;
-        this.finalModifiers[i]=finalModifier;
-      }else if(this.supportActive[i]=="utamo tempo"){
-        finalModifier=Math.ceil(baseModifier*0.65*10*targets)/10;
-        this.finalModifiers[i]=finalModifier;
-      }else
-      finalModifier=Math.ceil(baseModifier*targets*10)/10;
-      this.finalModifiers[i]=finalModifier
-    }
 
+    let finalModifier:number;
+    //find index of the spell
+
+    let index=this.optionsName.indexOf(this.selectedAttacks[this.selectedAttacks.length-1]);
+    //Get the modifier of the spell
+    let baseModifier=this.optionsModifer[index];
+     if(this.selectedAttack=="exori min" && this.targets>3){
+        this.optionsTargets.push(3);
+     } else if(this.selectedAttack!="exori mas" && this.targets>8){
+        this.optionsTargets.push(8);
+     }else{
+        this.optionsTargets.push(this.targets);
+     }
+
+
+    console.log(this.supportActive);
+    let currentTarget:number=this.optionsTargets.length-1;
+    let targetHit:number=this.optionsTargets[currentTarget];
+      if(this.supportActive[this.selectedAttacks.length-1]=="utito tempo"){
+        finalModifier=Math.ceil(baseModifier*1.4*10*targetHit)/10;
+        this.finalModifiers.push(finalModifier);
+        console.log("pushed from utito")
+      }else if(this.supportActive[this.selectedAttack.length-1]=="utamo tempo"){
+        finalModifier=Math.ceil(baseModifier*0.65*10*targetHit)/10;
+        this.finalModifiers.push(finalModifier);
+        console.log("pushed from utamo")
+      }else{
+        finalModifier=Math.ceil(baseModifier*targetHit*10)/10;
+      this.finalModifiers.push(finalModifier);
+      }
+
+
+    console.log(this.finalModifiers)
     this.ModifierSum=Math.ceil(this.finalModifiers.reduce((acc,current)=>acc+current,0)*10)/10
     this.AvgMod=Math.ceil((this.ModifierSum/this.finalModifiers.length)*10)/10;
   }
