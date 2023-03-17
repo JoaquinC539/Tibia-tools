@@ -158,5 +158,12 @@ export class KnightrotComponent implements OnInit {
     this.ModifierSum=Math.ceil(this.finalModifiers.reduce((acc,current)=>acc+current,0)*10)/10
     this.AvgMod=Math.ceil((this.ModifierSum/this.finalModifiers.length)*10)/10;
   }
-
+  resetAll(){
+    this.finalModifiers=[];
+    this.selectedAttacks=[];
+    this.optionsTargets=[];
+    this.supportActive=[];
+    this.ModifierSum=0;
+    this.AvgMod=0;
+  }
 }

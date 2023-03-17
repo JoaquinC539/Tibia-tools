@@ -15,7 +15,6 @@
     <span *ngIf="error" class="error-message">Cooldown not matching!</span>
   </div>
   <div class="modifiers">
-
       <p>Final Modifier: {{ModifierSum}}</p>
       <p>Modifier per turn: {{AvgMod}}</p>
       <label for="targets"></label>
@@ -41,6 +40,7 @@
       <li><button mat-raised-button (click)="addOptiontoArray()" >Add attack</button></li>
       <li><button mat-raised-button (click)="popLastOptionArray()">Delete last attack</button></li>
       <li><button mat-raised-button (click)="addSupportArray()">Add a support spell</button></li>
+      <li><button mat-raised-button (click)="resetAll()">Reset</button></li>
     </ul>
     </div>
 </div>
