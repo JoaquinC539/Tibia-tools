@@ -34,7 +34,7 @@ export class PaladinSpells{
       mana:0,
       cooldown:2,
       modifier:1,
-      type: "damage",
+      type: "auto-attack",
       targets:8
       },
       {
