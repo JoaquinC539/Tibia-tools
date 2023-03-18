@@ -125,7 +125,7 @@ export class KnightrotComponent implements OnInit {
     let finalModifier:number;
     //find index of the spell
 
-    let index=this.optionsName.indexOf(this.selectedAttacks[this.selectedAttacks.length-1]);
+    let index:number=this.optionsName.indexOf(this.selectedAttacks[this.selectedAttacks.length-1]);
     //Get the modifier of the spell
     let baseModifier=this.optionsModifer[index];
      if(this.selectedAttack=="exori min" && this.targets>3){
@@ -137,7 +137,7 @@ export class KnightrotComponent implements OnInit {
      }
 
 
-    console.log(this.supportActive);
+
     let currentTarget:number=this.optionsTargets.length-1;
     let targetHit:number=this.optionsTargets[currentTarget];
       if(this.supportActive[this.selectedAttacks.length-1]=="utito tempo"){
@@ -152,7 +152,7 @@ export class KnightrotComponent implements OnInit {
       }
 
 
-    console.log(this.finalModifiers)
+
     this.ModifierSum=Math.ceil(this.finalModifiers.reduce((acc,current)=>acc+current,0)*10)/10
     this.AvgMod=Math.ceil((this.ModifierSum/this.finalModifiers.length)*10)/10;
   }
