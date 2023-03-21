@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { KnightCalculations } from '../Services/knight';
 import { PaladinSpells } from '../Services/paladin';
 

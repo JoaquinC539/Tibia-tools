@@ -16,17 +16,14 @@ import { MatListModule } from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion'
-//Other Modules
-import { NgChartsModule } from 'ng2-charts';
 //service
 import { RequestService } from './Requestservice.service';
 import { KnightCalculations } from './Services/knight';
 import { PaladinSpells } from './Services/paladin';
-import { PaladinrotComponent } from './paladinrot/paladinrot.component';
 
 
-
-
+import { ChartService } from './Services/chart.service';
+import { CalculationsService } from './Services/calculations.service';
 
 //
 
@@ -35,7 +32,8 @@ import { PaladinrotComponent } from './paladinrot/paladinrot.component';
   declarations: [
     AppComponent,
     routeComponents,
-    PaladinrotComponent,
+
+
 
 
 
@@ -55,10 +53,9 @@ import { PaladinrotComponent } from './paladinrot/paladinrot.component';
     MatListModule,
     MatTableModule,
     MatSelectModule,
-    NgChartsModule,
     MatExpansionModule
   ],
-  providers: [RequestService,KnightCalculations,PaladinSpells],
+  providers: [RequestService,KnightCalculations,PaladinSpells,ChartService, CalculationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

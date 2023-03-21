@@ -1,0 +1,33 @@
+<h1>Skills scaling damage for runes, melee, arrows and spells</h1>
+<div class="selector">
+<mat-form-field appearance="fill" >
+  <mat-label>Damage type</mat-label>
+  <mat-select [(value)]="damageType">
+    <mat-option value="Melee">Melee</mat-option>
+    <mat-option value="Distance">Distance</mat-option>
+    <mat-option value="Magic">Magic</mat-option>
+  </mat-select>
+</mat-form-field><br>
+</div>
+  <form action="#">
+    <label for="Level">Current Level</label>
+    <input type="number" name="Level" [(ngModel)]="currentLevel">
+    <label for="Skill">Current Main Skill</label>
+    <input type="number" name="Skill" [(ngModel)]="currentSkill">
+    <label for="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" >Weapon damage</label>
+    <input type="number" name="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="weaponAttack">
+    <mat-form-field appearance="fill" >
+      <mat-label>Combat Stance</mat-label>
+      <mat-select [(value)]="stance">
+        <mat-option value="offensive">Offensive stance</mat-option>
+        <mat-option value="balance">Balanced stance</mat-option>
+        <mat-option value="deffensive">Deffensive stance</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+<app-melee-damage *ngIf="damageType=='Melee'" [level]="currentLevel"
+ [skill]="currentSkill" [armor]="armor" [resistance]="resistance" [weaponAttack]="weaponAttack" [stance]="stance"></app-melee-damage>
+<app-distance-damage *ngIf="damageType=='Distance'"></app-distance-damage>
+<app-magic-damage *ngIf="damageType=='Magic'"></app-magic-damage>
+
+
