@@ -91,6 +91,7 @@ export class KnightrotComponent implements OnInit {
 
     }
     }
+    this.calculateModifiers();
   }
   popLastOptionArray(){
     this.selectedAttacks.pop()
@@ -121,37 +122,38 @@ export class KnightrotComponent implements OnInit {
   }
 
   calculateModifiers(){
-
-    let finalModifier:number;
-    //find index of the spell
-
-    let index:number=this.optionsName.indexOf(this.selectedAttacks[this.selectedAttacks.length-1]);
-    //Get the modifier of the spell
-    let baseModifier=this.optionsModifer[index];
-     if(this.selectedAttack=="exori min" && this.targets>3){
+    this.finalModifiers=[];
+    this.ModifierSum=0;
+    this.AvgMod=0;
+    let finalModifier:number=0;
+    this.optionsTargets=[];
+    for(let i=0;i<this.selectedAttacks.length;i++){
+      let index:number=this.optionsName.indexOf(this.selectedAttacks[i]);
+      let baseModifier=this.optionsModifer[index];
+      if(this.selectedAttack=="exori min" && this.targets>3){
         this.optionsTargets.push(3);
      } else if(this.selectedAttack!="exori mas" && this.targets>8){
         this.optionsTargets.push(8);
      }else{
         this.optionsTargets.push(this.targets);
      }
-
-
-
-    let currentTarget:number=this.optionsTargets.length-1;
-    let targetHit:number=this.optionsTargets[currentTarget];
-      if(this.supportActive[this.selectedAttacks.length-1]=="utito tempo"){
-        finalModifier=Math.ceil(baseModifier*1.35*10*targetHit)/10;
-        this.finalModifiers.push(finalModifier);
-      }else if(this.supportActive[this.selectedAttack.length-1]=="utamo tempo"){
-        finalModifier=Math.ceil(baseModifier*0.65*10*targetHit)/10;
-        this.finalModifiers.push(finalModifier);
-      }else{
-        finalModifier=Math.ceil(baseModifier*targetHit*10)/10;
+     let target:number=this.optionsTargets[i];
+     if(this.supportActive[i]=="utito tempo"){
+      finalModifier=Math.ceil(baseModifier*1.35*10*target)/10;
       this.finalModifiers.push(finalModifier);
-      }
+    }else if(this.supportActive[i]=="utamo tempo"){
+      finalModifier=Math.ceil(baseModifier*0.65*10*target)/10;
+      this.finalModifiers.push(finalModifier);
+    }else{
+      finalModifier=Math.ceil(baseModifier*target*10)/10;
+    this.finalModifiers.push(finalModifier);
+    }
+    }
 
 
+
+    // let currentTarget:number=this.optionsTargets.length-1;
+    // let targetHit:number=this.optionsTargets[currentTarget];
 
     this.ModifierSum=Math.ceil(this.finalModifiers.reduce((acc,current)=>acc+current,0)*10)/10
     this.AvgMod=Math.ceil((this.ModifierSum/this.finalModifiers.length)*10)/10;

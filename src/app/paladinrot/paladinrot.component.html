@@ -21,6 +21,7 @@
     <p>Modifier per turn: {{AvgMod}}</p>
     Targets: <input type="number" [(ngModel)]="targets" name="targets" class="targets" >
   </div>
+  <section class="wrapper">
   <div class="selectors">
     <mat-form-field appearance="fill" >
     <mat-label >Damage attacks</mat-label>
@@ -43,4 +44,5 @@
       <li><button mat-raised-button (click)="resetAll()">Reset</button></li>
     </ul>
   </div>
+  </section>
 </div>

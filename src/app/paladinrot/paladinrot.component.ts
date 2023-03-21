@@ -10,7 +10,7 @@ import { PaladinSpells } from '../Services/paladin';
 export class PaladinrotComponent implements OnInit {
   public type:String;
   public selectedAttacks:any[]=[]
-  public arrowCount:any[]=[];
+  public arrowCount:string[]=[];
   public optionsName:string[]=[];
   public optionsCooldown:number[]=[];
   public optionsMana:number[]=[];
@@ -74,7 +74,7 @@ export class PaladinrotComponent implements OnInit {
     if(exist===-1){
       this.arrowCount.push(this.PSpells.spells[3].name);
       this.selectedAttacks.push(this.selectedAttack);
-      this.calculateModifiers();
+
       //If it has been pushed do the next checks
     }else {
       //To check if cooldown is ready is needed to obtain the spacing between the last apparition and where it would be pushed
@@ -86,13 +86,12 @@ export class PaladinrotComponent implements OnInit {
       if(spaceBetween-turnCooldown>=0){
         this.arrowCount.push(this.PSpells.spells[3].name);
         this.selectedAttacks.push(this.selectedAttack);
-        this.calculateModifiers()
-
         //if it is a minus value turn on the error
       }else{
         this.error=true;
       }
     }
+    this.calculateModifiers();
   }
   addSupportArray(){
     let duration = 0;
@@ -121,27 +120,37 @@ export class PaladinrotComponent implements OnInit {
 
     }
     }
+    this.calculateModifiers();
   }
 
   calculateModifiers(){
-      //find index of the spell
-      let finalModifier:number;
-      let index:number=this.optionsName.indexOf(this.selectedAttacks[this.selectedAttacks.length-1]);
-      //Get the modifier of the spell
+    this.finalModifiers=[];
+    this.ModifierSum=0;
+    this.AvgMod=0;
+    this.ModifierSum=0;
+    this.optionsTargets=[];
+    let finalModifier:number=0;
+    this.arrowCount=[];
+    this.modifiers=[];
+    //Fill the modifier array
+    for(let i=0;i<this.selectedAttacks.length;i++){
+      let index:number=this.optionsName.indexOf(this.selectedAttacks[i]);
       let baseSpellModifier:number=this.optionsModifer[index];
-      let currentTarget:number=this.optionsTargets.length-1;
       let arrowDamage:number=1*this.targets;
       let magicDamage:number=baseSpellModifier*this.targets;
-      if(this.supportActive[this.selectedAttacks.length-1]=="utito tempo san"){
-
+      if(this.supportActive[i]=="utito tempo san"){
+        this.arrowCount.push("Diamond Arrow")
         finalModifier=Math.ceil((magicDamage+arrowDamage*1.4)*10)/10;
         this.finalModifiers.push(finalModifier);
         this.modifiers.push(String(arrowDamage*1.4)+" distance damage \n" + String(magicDamage)+" magic damage");
       }else{
+        this.arrowCount.push("Diamond Arrow")
       finalModifier=Math.ceil((magicDamage+arrowDamage)*10)/10;
       this.finalModifiers.push(finalModifier);
       this.modifiers.push(String(arrowDamage)+" distance damage \n" + String(magicDamage)+" magic damage");
       }
+    }
+    //Calculate final mods
     this.ModifierSum=Math.ceil(this.finalModifiers.reduce((acc,current)=>acc+current,0)*10)/10
     this.AvgMod=Math.ceil((this.ModifierSum/this.finalModifiers.length)*10)/10;
 

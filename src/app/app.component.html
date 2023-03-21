@@ -8,7 +8,8 @@
       <a mat-list-item class="link-element"[routerLink]="['']"><i class="fa-solid fa-house-chimney homebutton"></i></a>
       <a mat-list-item href="#" class="link-element" [routerLink]="['/lsplit']"  routerLinkActive="active"  >Loot splitter</a>
       <a mat-list-item href="#" [routerLink]="['rotations']" [routerLinkActive]="['active']" class="link-element">Rotations</a>
-      <a mat-list-item href="#" class="link-element">Distance damage</a>
+      <a mat-list-item href="#" [routerLink]="['skills']" [routerLinkActive]="['active']" class="link-element">Skills</a>
+      <a mat-list-item href="#" [routerLink]="['imbuments']" [routerLinkActive]="['active']" class="link-element">Imbuments</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main-window">
@@ -22,7 +23,7 @@
         >
         <mat-icon aria-label="home icon">menu</mat-icon>
       </button>
-      <h1 class="main-title">Useful Tibia Tools</h1>
+      <h1 class="main-title">Tibia Tools</h1>
       <div class="icons">
         <a href="https://github.com/JoaquinC539/Tibia-tools" target="_blank"><i class="fa-brands fa-github"></i></a>
       </div>
