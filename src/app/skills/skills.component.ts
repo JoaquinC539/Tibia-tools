@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,DoCheck } from '@angular/core';
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
-export class SkillsComponent  implements OnInit{
+export class SkillsComponent  implements OnInit,DoCheck{
   public damageType:string;
   public chart:any;
   public currentLevel:number;
@@ -24,6 +24,9 @@ export class SkillsComponent  implements OnInit{
   }
 
   ngOnInit(): void {
+
+  }
+  ngDoCheck(): void {
 
   }
 
