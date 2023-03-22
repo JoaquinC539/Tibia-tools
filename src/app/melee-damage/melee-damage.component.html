@@ -2,6 +2,20 @@
 <div class="chartContainer">
   <canvas id="levelChart">{{levelChart}}</canvas>
 </div>
-
+<div class="chartContainer">
+  <canvas id="skillChart">{{skillChart}}</canvas>
+</div><br><hr>
+<mat-card>
+  <mat-card-content>
+    <mat-card-header><h2>Is training worth?</h2></mat-card-header>
+    <mat-checkbox [(ngModel)]="privateDummy">Private Dummy '(10% bonus)'</mat-checkbox>
+    <mat-checkbox [(ngModel)]="doubleSkill">Double Skill '(100% bonus)'</mat-checkbox><br>
+    To next skill level: <input type="number" [(ngModel)]="toNextSkill">
+    <button (click)="updateChart()">Graph</button>
+  </mat-card-content>
+</mat-card>
+<div class="chartContainer">
+  <canvas id="trainChart">{{trainChart}}</canvas>
+</div>
 
 

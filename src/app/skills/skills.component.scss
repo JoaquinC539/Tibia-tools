@@ -7,3 +7,73 @@ h1,h3{
   padding: 1em;
   align-items: center;
 }
+.formOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  .formRow{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    input{
+      width: 28%;
+    }
+  }
+
+}
+/* Increase font size */
+.fieldLabel, input, select {
+  font-size: 1rem;
+}
+/* Add padding and margin */
+.fieldLabel, input, select {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+.formOptions > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+
+}
+
+/* Override grid for the select element */
+.mat-form-field {
+  width: 55%;
+}
+@media only screen and (min-width:615px){
+  .formOptions > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    input {
+      width: 100%;
+    }
+  }
+}
+@media only screen and (min-width:900px){
+  .formOptions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    .formRow {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+      input {
+        width: 35%;
+      }
+    }
+    .mat-form-field {
+      width: 55%;
+    }
+  }
+}
