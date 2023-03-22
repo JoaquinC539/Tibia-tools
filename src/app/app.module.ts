@@ -16,6 +16,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion'
+import {MatCheckboxModule} from '@angular/material/checkbox'
+import {MatCardModule} from '@angular/material/card';
 //service
 import { RequestService } from './Requestservice.service';
 import { KnightCalculations } from './Services/knight';
@@ -53,7 +55,10 @@ import { CalculationsService } from './Services/calculations.service';
     MatListModule,
     MatTableModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatCardModule
+
   ],
   providers: [RequestService,KnightCalculations,PaladinSpells,ChartService, CalculationsService],
   bootstrap: [AppComponent]

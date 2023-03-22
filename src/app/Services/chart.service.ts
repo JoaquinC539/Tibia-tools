@@ -5,7 +5,7 @@ import { Chart } from 'chart.js/auto';
 })
 export class ChartService {
 
-    createLevelChart(levels:number[],damage:number[],title:string){
+  createLevelChart(levels:number[],damage:number[],title:string){
       let levelChart:any
        levelChart = new Chart("levelChart", {
         type: 'line', //this denotes tha type of chart
@@ -104,5 +104,55 @@ export class ChartService {
 
     });
     return levelChart;
+}
+  createTrainingChart(skill:number[],gold:number[],title:string){
+  let levelChart:any
+   levelChart = new Chart("trainChart", {
+    type: 'line', //this denotes tha type of chart
+
+    data: {// values on X-Axis
+      labels: skill,
+       datasets: [
+        {
+          label: title,
+          data: gold,
+          backgroundColor: '#papayawhip',
+          borderColor:'#c2185b',
+          fill:false,
+          tension:0.5
+        },
+
+      ]
+    },
+    options: {
+      aspectRatio:3,
+      scales:{
+        y:{
+          display:true,
+          title:{
+            display:true,
+            text:"Gold in kk's (millions)",
+            color:'#fff',
+            font:{
+              size:18
+            }
+          }
+        },
+        x:{
+          display:true,
+          title:{
+            display:true,
+            text:"Skill level",
+            color:'#fff',
+            font:{
+              size:18
+            }
+          }
+        }
+      }
+    }
+
+  });
+  return levelChart;
 }
 }

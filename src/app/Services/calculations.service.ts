@@ -74,4 +74,101 @@ export class CalculationsService {
       damage:damage}
     return data;
   }
+  calculateSkillPoints(skill:number,vocation:string){
+    let skills:number[]=[];
+    let skillPoints:number[]=[];
+    let results:{skills:number[],skillPoints:number[]}={skills:skills,skillPoints:skillPoints}
+    let A:number=0;
+    let b:number=0;
+    let c:number=0;
+    if(vocation==="knight"){
+      A=50;
+      b=1.1;
+      c=10;
+    }
+    if(vocation==="paladinDist"){
+      A=25;
+      b=1.1;
+      c=10;
+    }
+    if(vocation==="mage"){
+      A=1600;
+      b=1.1;
+      c=0;
+    }
+    if(vocation==="paladinMag"){
+      A=1600;
+      b=1.4;
+      c=0;
+    }
+
+    for(let i=skill;i<=135;i++){
+       skills.push(i);
+      let P=Math.ceil(A*b**(i-c));
+      skillPoints.push(P);
+    }
+    return results;
+  }
+calculateTrainCost(skillPoints:number[],bonus:number=1,toNextSkill:number,type:string){
+  let exercise:number[]=[];
+  let durable:number[]=[];
+  let lasting:number[]=[];
+  let goldPerSkillLevel:{exercise:number[],durable:number[],lasting:number[]};
+  let Exratio:number=0;
+  let Durratio:number=0;
+  let Lastratio:number=0;
+  //Cost expressed in kk or Millions
+  let exerciseWeaponsCost=0.2625;
+  let durableWeaponsCost=0.9455;
+  let lastingWeaponsCost=7.560;
+  //Weapons Charges
+  let exerciseMeleeCharges=3600;
+  let durableMeleeCharges=12960;
+  let lastingMeleeCharges=103680;
+  let exerciseDistanceCharges=1800;
+  let durableDistanceCharges=6480;
+  let lastingDistanceCharges=51480;
+  let exerciseMagicCharges=30000;
+  let durableMagicCharges=1080000;
+  let lastingMagicCharges=8640000;
+  if(bonus>1){
+    skillPoints=skillPoints.map(x=>x/bonus);
+  }
+  if(type=="melee"){
+    Exratio=exerciseWeaponsCost/exerciseMeleeCharges;
+    Durratio=durableWeaponsCost/durableMeleeCharges;
+    Lastratio=lastingWeaponsCost/lastingMeleeCharges;
+  }
+  if(type=="distance"){
+    Exratio=exerciseWeaponsCost/exerciseDistanceCharges;
+    Durratio=durableWeaponsCost/durableDistanceCharges;
+    Lastratio=lastingWeaponsCost/lastingDistanceCharges;
+  }
+  if(type=="magic"){
+    Exratio=exerciseWeaponsCost/exerciseMagicCharges;
+    Durratio=durableWeaponsCost/durableMagicCharges;
+    Lastratio=lastingWeaponsCost/lastingMagicCharges;
+  }
+  for(let i=0;i<skillPoints.length;i++){
+    if(i==0){
+      toNextSkill=(toNextSkill)/100;
+      let nextSkillExerciseCost=skillPoints[i]*toNextSkill*Exratio;
+      let nextSkillDurableCost=skillPoints[i]*toNextSkill*Durratio;
+      let nextSkillLastingCost=skillPoints[i]*toNextSkill*Lastratio;
+      exercise.push(Number(nextSkillExerciseCost.toFixed(1)));
+      durable.push(Number(nextSkillDurableCost.toFixed(1)));
+      lasting.push(Number(nextSkillLastingCost.toFixed(1)));
+    }else{
+      let nextSkillExerciseCost=skillPoints[i]*Exratio;
+      let nextSkillDurableCost=skillPoints[i]*Durratio;
+      let nextSkillLastingCost=skillPoints[i]*Lastratio;
+      exercise.push(Number(nextSkillExerciseCost.toFixed(1)));
+      durable.push(Number(nextSkillDurableCost.toFixed(1)));
+      lasting.push(Number(nextSkillLastingCost.toFixed(1)));
+    }
+
+  }
+  goldPerSkillLevel={exercise:exercise,durable:durable,lasting:lasting};
+  return goldPerSkillLevel;
+}
 }
