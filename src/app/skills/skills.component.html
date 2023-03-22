@@ -9,22 +9,41 @@
   </mat-select>
 </mat-form-field><br>
 </div>
-  <form action="#">
-    <label for="Level">Current Level</label>
-    <input type="number" name="Level" [(ngModel)]="currentLevel">
-    <label for="Skill">Current Main Skill</label>
-    <input type="number" name="Skill" [(ngModel)]="currentSkill">
-    <label for="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" >Weapon damage</label>
-    <input type="number" name="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="weaponAttack">
+  <form action="#" class="formOptions">
+    <div>
+    <div class="formRow">
+      <label for="Level" class="fieldLabel">Current Level</label>
+      <input type="number" name="Level" [(ngModel)]="currentLevel">
+    </div>
+    <div class="formRow">
+      <label class="fieldLabel" for="Skill">Current Main Skill</label>
+      <input type="number" name="Skill" [(ngModel)]="currentSkill"><br>
+    </div>
+    <div class="formRow">
+    <label  class="fieldLabel" for="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" >Weapon damage</label>
+    <input type="number" name="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="weaponAttack"><br>
+    </div>
+    <div class="formRow">
+      <label class="fieldLabel" for="armor" *ngIf="damageType==='Melee' || damageType==='Distance' " >Armor</label>
+      <input type="number" name="armor" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="armor"><br>
+    </div>
+    <div class="formRow">
+      <label class="fieldLabel" for="armor" *ngIf="damageType==='Melee' || damageType==='Distance' || damageType==='Magic'" >Resistance</label>
+      <input type="number" name="resistance" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="resistance"><br>
+    </div>
+    <div class="formRow">
     <mat-form-field appearance="fill" >
       <mat-label>Combat Stance</mat-label>
       <mat-select [(value)]="stance">
-        <mat-option value="offensive">Offensive stance</mat-option>
-        <mat-option value="balance">Balanced stance</mat-option>
-        <mat-option value="deffensive">Deffensive stance</mat-option>
+        <mat-option value="offensive">Offensive</mat-option>
+        <mat-option value="balance">Balanced</mat-option>
+        <mat-option value="deffensive">Deffensive</mat-option>
       </mat-select>
     </mat-form-field>
+    </div>
+    </div>
   </form>
+  <p><small>For elemental weapons. It is needed to set armor to 0 and focus the damage weapon on the elemental damage. If charts are bugged click the Graph button</small></p>
 <app-melee-damage *ngIf="damageType=='Melee'" [level]="currentLevel"
  [skill]="currentSkill" [armor]="armor" [resistance]="resistance" [weaponAttack]="weaponAttack" [stance]="stance"></app-melee-damage>
 <app-distance-damage *ngIf="damageType=='Distance'"></app-distance-damage>

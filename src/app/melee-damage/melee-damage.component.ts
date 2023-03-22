@@ -26,10 +26,6 @@ export class MeleeDamageComponent implements OnInit,OnDestroy {
    }
 
   ngOnInit(): void {
-    let skillPoints=this.calculation.calculateSkillPoints(this.skill,"knight");
-    console.log(skillPoints);
-    let trainCost=this.calculation.calculateTrainCost(skillPoints.skillPoints,1,this.toNextSkill,"melee");
-    console.log(trainCost);
     this.calculateAndChart();
   }
   ngOnDestroy(): void {
@@ -49,7 +45,7 @@ export class MeleeDamageComponent implements OnInit,OnDestroy {
     bonus+=(this.doubleSkill)?1:0;
     let skillPoints=this.calculation.calculateSkillPoints(this.skill,"knight")
     trainData={skills:skillPoints.skills,gold:this.calculation.calculateTrainCost(skillPoints.skillPoints,bonus,this.toNextSkill,"melee")}
-    console.log(trainData);
+
 
     if(this.levelChart){
       this.levelChart.destroy();

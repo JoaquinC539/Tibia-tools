@@ -25,7 +25,7 @@ export class ChartService {
           ]
         },
         options: {
-          aspectRatio:3,
+          aspectRatio:1.0,
           scales:{
             y:{
               display:true,
@@ -75,7 +75,7 @@ export class ChartService {
         ]
       },
       options: {
-        aspectRatio:3,
+        aspectRatio:1.0,
         scales:{
           y:{
             display:true,
@@ -125,7 +125,7 @@ export class ChartService {
       ]
     },
     options: {
-      aspectRatio:3,
+      aspectRatio:1,
       scales:{
         y:{
           display:true,

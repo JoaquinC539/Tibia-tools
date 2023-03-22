@@ -109,7 +109,7 @@ export class CalculationsService {
     }
     return results;
   }
-calculateTrainCost(skillPoints:number[],bonus:number=1,toNextSkill:number,type:string){
+  calculateTrainCost(skillPoints:number[],bonus:number=1,toNextSkill:number,type:string){
   let exercise:number[]=[];
   let durable:number[]=[];
   let lasting:number[]=[];
