@@ -131,23 +131,20 @@ calculateTrainCost(skillPoints:number[],bonus:number=1,toNextSkill:number,type:s
   let exerciseMagicCharges=30000;
   let durableMagicCharges=1080000;
   let lastingMagicCharges=8640000;
-  if(bonus>1){
-    skillPoints=skillPoints.map(x=>x/bonus);
-  }
-  if(type=="melee"){
-    Exratio=exerciseWeaponsCost/exerciseMeleeCharges;
-    Durratio=durableWeaponsCost/durableMeleeCharges;
-    Lastratio=lastingWeaponsCost/lastingMeleeCharges;
+   if(type=="melee"){
+    Exratio=exerciseWeaponsCost/(exerciseMeleeCharges*bonus);
+    Durratio=durableWeaponsCost/(durableMeleeCharges*bonus);
+    Lastratio=lastingWeaponsCost/(lastingMeleeCharges*bonus);
   }
   if(type=="distance"){
-    Exratio=exerciseWeaponsCost/exerciseDistanceCharges;
-    Durratio=durableWeaponsCost/durableDistanceCharges;
-    Lastratio=lastingWeaponsCost/lastingDistanceCharges;
+    Exratio=exerciseWeaponsCost/(exerciseDistanceCharges*bonus);
+    Durratio=durableWeaponsCost/(durableDistanceCharges*bonus);
+    Lastratio=lastingWeaponsCost/(lastingDistanceCharges*bonus);
   }
   if(type=="magic"){
-    Exratio=exerciseWeaponsCost/exerciseMagicCharges;
-    Durratio=durableWeaponsCost/durableMagicCharges;
-    Lastratio=lastingWeaponsCost/lastingMagicCharges;
+    Exratio=exerciseWeaponsCost/(exerciseMagicCharges*bonus);
+    Durratio=durableWeaponsCost/(durableMagicCharges*bonus);
+    Lastratio=lastingWeaponsCost/(lastingMagicCharges*bonus);
   }
   for(let i=0;i<skillPoints.length;i++){
     if(i==0){
