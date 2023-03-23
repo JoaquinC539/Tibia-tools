@@ -13,7 +13,7 @@ export class CalculationsService {
     let damage:number[]=[]
     resistance=resistance/100
     try{
-      for(let i=level;i<=1100;i+=10){
+      for(let i=level;i<=1300;i+=10){
         levels.push(i);
       }
       for(let i=0;i<levels.length;i++){
@@ -141,6 +141,66 @@ export class CalculationsService {
       damage:damage}
     return data;
   }
+  calculateLevelMagicDamage(level:number,skill:number,resistance:number):{}{
+    let data:{};
+    let levels:number[]=[]
+    let greatRuneDamage:number[]=[];
+    let suddenDeathDamage:number[]=[];
+    let exevoMasSanDamage:number[]=[];
+    resistance=resistance/100
+    try{
+      for(let i=level;i<=1500;i+=10){
+        levels.push(i);
+      }
+      for(let i=0;i<levels.length;i++){
+        let S:number=((Math.sqrt(2*levels[i]+2025)+5)/10);
+        let baseDamage:number=(((levels[i]+1000)/S)-50*S)+(100*S)-450;
+        greatRuneDamage.push((skill*2.2)+baseDamage);
+        suddenDeathDamage.push((skill*7.45)+baseDamage);
+        exevoMasSanDamage.push((skill*6.75)+baseDamage);
+      }
+    }catch(e){console.log(e)}
+    data={levels:levels,
+          damage:{
+            runeDamage:greatRuneDamage,
+            SDdamage:suddenDeathDamage,
+            San:exevoMasSanDamage,
+          }
+    }
+    return data;
+  }
+  calculateSkillMagicDamage(level:number,skill:number,resistance:number,maxSkill:number):{}{
+    let data:{};
+    let skills:number[]=[]
+    let greatRuneDamage:number[]=[];
+    let suddenDeathDamage:number[]=[];
+    let exevoMasSanDamage:number[]=[];
+    try{
+    resistance=resistance/100
+    let S:number=((Math.sqrt(2*level+2025)+5)/10);
+    let baseDamage:number=(((level+1000)/S)-50*S)+(100*S)-450;
+
+      for(let i=skill;i<=maxSkill;i+=1){
+        skills.push(i);
+      }
+      for(let i=0;i<skills.length;i++){
+
+        greatRuneDamage.push((skills[i]*2.2)+baseDamage);
+        suddenDeathDamage.push((skills[i]*7.45)+baseDamage);
+        exevoMasSanDamage.push((skills[i]*6.75)+baseDamage);
+      }
+
+
+
+    }catch(e){console.log(e)}
+    data={skills:skills,
+      damage:{
+        runeDamage:greatRuneDamage,
+        SDdamage:suddenDeathDamage,
+        San:exevoMasSanDamage,
+      }}
+    return data;
+  }
   calculateSkillPoints(skill:number,vocation:string){
     let skills:number[]=[];
     let skillPoints:number[]=[];
@@ -170,6 +230,31 @@ export class CalculationsService {
     }
 
     for(let i=skill;i<=135;i++){
+       skills.push(i);
+      let P=Math.ceil(A*b**(i-c));
+      skillPoints.push(P);
+    }
+    return results;
+  }
+  calculateMagicSkillPoints(skill:number,vocation:string,maxSkill:number){
+    let skills:number[]=[];
+    let skillPoints:number[]=[];
+    let results:{skills:number[],skillPoints:number[]}={skills:skills,skillPoints:skillPoints}
+    let A:number=0;
+    let b:number=0;
+    let c:number=0;
+    if(vocation==="mage"){
+      A=1600;
+      b=1.1;
+      c=0;
+    }
+    if(vocation==="paladinMag"){
+      A=1600;
+      b=1.4;
+      c=0;
+    }
+
+    for(let i=skill;i<=maxSkill;i++){
        skills.push(i);
       let P=Math.ceil(A*b**(i-c));
       skillPoints.push(P);

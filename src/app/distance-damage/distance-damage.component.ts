@@ -15,7 +15,6 @@ export class DistanceDamageComponent implements OnInit,OnDestroy {
   @Input() resistance:any;
   @Input() stance:any;
   public levelChart:any;
-  public data:any;
   public skillChart:any;
   public trainChart:any;
   public doubleSkill:boolean=false;
@@ -40,12 +39,11 @@ export class DistanceDamageComponent implements OnInit,OnDestroy {
     bonus+= (this.privateDummy)?0.1:0;
     bonus+=(this.doubleSkill)?1:0;
     let skillPoints=this.calculation.calculateSkillPoints(this.skill,"paladinDist")
-    trainData={skills:skillPoints.skills,gold:this.calculation.calculateTrainCost(skillPoints.skillPoints,bonus,this.toNextSkill,"distance")}
-    console.log(trainData);
+    trainData={skills:skillPoints.skills,gold:this.calculation.calculateTrainCost(skillPoints.skillPoints,bonus,this.toNextSkill,"distance")};
 
-    this,this.destroyCharts();
-    this.levelChart=this.chartService.createLevelChart(levelData.levels,levelData.damage,"Damage of whirlwind throw (mod x1) by level");
-    this.skillChart=this.chartService.createSkillChart(skillData.skills,skillData.damage,"Damage of whirlwind throw (mod x1) by skill");
+    this.destroyCharts();
+    this.levelChart=this.chartService.createLevelChart(levelData.levels,levelData.damage,"Damage of arrow/bolt by level");
+    this.skillChart=this.chartService.createSkillChart(skillData.skills,skillData.damage,"Damage of arrow/bolt by skill");
     this.trainChart=this.chartService.createTrainingChart(trainData.skills,trainData.gold.exercise,"Cost to next skill level using training weapons");
    }
    updateChart(){
