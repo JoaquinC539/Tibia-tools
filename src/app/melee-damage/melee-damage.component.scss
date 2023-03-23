@@ -13,7 +13,6 @@ button {
   cursor: pointer;
   margin: 1em auto 1em;
   display: block;
-
 }
 
 
@@ -48,13 +47,8 @@ hr {
   border-top: 2px solid #ddd;
 }
 /* Default styles for the chart container */
-.chart-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+.chartContainer {
+
 }
 
 /* Styles for the chart canvas */
@@ -81,14 +75,15 @@ hr {
 
 /* Media query for tablet devices */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .chart-container {
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  .chartContainer {
+     width: 650px;
   }
 }
 
 /* Media query for desktop devices */
 @media (min-width: 1024px) {
-  .chart-container {
-    padding-bottom: 50%; /* 2:1 aspect ratio */
+  .chartContainer {
+    width: 900px;
+
   }
 }

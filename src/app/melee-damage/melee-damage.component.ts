@@ -26,20 +26,19 @@ export class MeleeDamageComponent implements OnInit,OnDestroy {
    }
 
   ngOnInit(): void {
+    this.destroyCharts();
     this.calculateAndChart();
   }
   ngOnDestroy(): void {
-      if(this.levelChart){
-        this.levelChart.destroy();
-      }
+      this.destroyCharts();
   }
 
   calculateAndChart(){
     let levelData:any;
     let skillData:any;
     let trainData:any;
-    levelData=this.calculation.calculateLevelPhysicalDamage(this.level,this.stance,this.weaponAttack,this.skill,this.armor,this.resistance);
-    skillData=this.calculation.calculateSkillPhysicalDamage(this.level,this.stance,this.weaponAttack,this.skill,this.armor,this.resistance);
+    levelData=this.calculation.calculateLevelMeleeDamage(this.level,this.stance,this.weaponAttack,this.skill,this.armor,this.resistance);
+    skillData=this.calculation.calculateSkillMeleeDamage(this.level,this.stance,this.weaponAttack,this.skill,this.armor,this.resistance);
     let bonus:number=1;
     bonus+= (this.privateDummy)?0.1:0;
     bonus+=(this.doubleSkill)?1:0;
@@ -47,6 +46,15 @@ export class MeleeDamageComponent implements OnInit,OnDestroy {
     trainData={skills:skillPoints.skills,gold:this.calculation.calculateTrainCost(skillPoints.skillPoints,bonus,this.toNextSkill,"melee")}
 
 
+    this.destroyCharts();
+    this.levelChart=this.chartService.createLevelChart(levelData.levels,levelData.damage,"Damage of whirlwind throw (mod x1) by level");
+    this.skillChart=this.chartService.createSkillChart(skillData.skills,skillData.damage,"Damage of whirlwind throw (mod x1) by skill");
+    this.trainChart=this.chartService.createTrainingChart(trainData.skills,trainData.gold.exercise,"Cost to next skill level using training weapons");
+   }
+   updateChart(){
+    this.calculateAndChart();
+   }
+   destroyCharts(){
     if(this.levelChart){
       this.levelChart.destroy();
     }
@@ -56,12 +64,5 @@ export class MeleeDamageComponent implements OnInit,OnDestroy {
     if(this.trainChart){
       this.trainChart.destroy();
     }
-    this.levelChart=this.chartService.createLevelChart(levelData.levels,levelData.damage,"Damage of whirlwind throw (mod x1) by level");
-    this.skillChart=this.chartService.createSkillChart(skillData.skills,skillData.damage,"Damage of whirlwind throw (mod x1) by skill");
-    this.trainChart=this.chartService.createTrainingChart(trainData.skills,trainData.gold.exercise,"Cost to next skill level using training weapons");
    }
-   updateChart(){
-    this.calculateAndChart();
-   }
-
 }

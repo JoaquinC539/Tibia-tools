@@ -20,19 +20,20 @@
       <input type="number" name="Skill" [(ngModel)]="currentSkill"><br>
     </div>
     <div class="formRow">
+      <label class="fieldLabel" for="armor" >Resistance</label>
+      <input type="number" name="resistance"  [(ngModel)]="resistance"><br>
+    </div>
+    <div class="formRow">
     <label  class="fieldLabel" for="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" >Weapon damage</label>
     <input type="number" name="weapon" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="weaponAttack"><br>
     </div>
     <div class="formRow">
-      <label class="fieldLabel" for="armor" *ngIf="damageType==='Melee' || damageType==='Distance' " >Armor</label>
+      <label class="fieldLabel" for="armor" *ngIf="damageType==='Melee' || damageType==='Distance'" >Armor</label>
       <input type="number" name="armor" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="armor"><br>
     </div>
+
     <div class="formRow">
-      <label class="fieldLabel" for="armor" *ngIf="damageType==='Melee' || damageType==='Distance' || damageType==='Magic'" >Resistance</label>
-      <input type="number" name="resistance" *ngIf="damageType==='Melee' || damageType==='Distance'" [(ngModel)]="resistance"><br>
-    </div>
-    <div class="formRow">
-    <mat-form-field appearance="fill" >
+    <mat-form-field appearance="fill" *ngIf="damageType==='Melee' || damageType==='Distance'" >
       <mat-label>Combat Stance</mat-label>
       <mat-select [(value)]="stance">
         <mat-option value="offensive">Offensive</mat-option>
@@ -43,10 +44,13 @@
     </div>
     </div>
   </form>
-  <p><small>For elemental weapons. It is needed to set armor to 0 and focus the damage weapon on the elemental damage. If charts are bugged click the Graph button</small></p>
+  <p><small>For elemental weapons. It is needed to set armor to 0 and focus the damage weapon on the elemental damage.</small></p>
+   <p><small>  If charts are bugged click the Graph button</small></p>
 <app-melee-damage *ngIf="damageType=='Melee'" [level]="currentLevel"
  [skill]="currentSkill" [armor]="armor" [resistance]="resistance" [weaponAttack]="weaponAttack" [stance]="stance"></app-melee-damage>
-<app-distance-damage *ngIf="damageType=='Distance'"></app-distance-damage>
-<app-magic-damage *ngIf="damageType=='Magic'"></app-magic-damage>
+<app-distance-damage *ngIf="damageType=='Distance'" [level]="currentLevel"
+[skill]="currentSkill" [armor]="armor" [resistance]="resistance" [weaponAttack]="weaponAttack" [stance]="stance"></app-distance-damage>
+<app-magic-damage *ngIf="damageType=='Magic'" [level]="currentLevel"
+[skill]="currentSkill" [resistance]="resistance"></app-magic-damage>
 
 
