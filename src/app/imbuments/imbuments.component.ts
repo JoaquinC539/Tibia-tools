@@ -1,4 +1,4 @@
-import { Component, OnInit,DoCheck } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-imbuments',
@@ -57,9 +57,7 @@ export class ImbumentsComponent implements OnInit{
   ngOnInit(): void {
     this.calculateHourCost();
   }
-  ngDoCheck(): void {
 
-  }
 
 
      /**
