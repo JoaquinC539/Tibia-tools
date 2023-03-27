@@ -1,0 +1,42 @@
+h1{
+  text-align: center;
+}
+.parent {
+  display: flex;
+  justify-content: center;
+
+  height: 100vh; /* Set the height of the parent container */
+}
+.content {
+  width: 75%;
+  height: 250px;
+  padding: 0;
+  h2{
+    text-align: center;
+  }
+  mat-card{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  input {
+    width: 50%;
+    padding: 0.25rem;
+    font-size: 1rem;
+    border: 1px solid #aaa;
+    border-radius: 0.55rem;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 0.7rem;
+  }
+  p{
+    font-size: 1.05em;
+  }
+}
+@media screen and (min-width:900px) {
+  .content{
+    width:45% ;
+    p{
+      font-size: 1.4rem;
+    }
+  }
+}
