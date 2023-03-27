@@ -115,7 +115,7 @@
     <label for="damage">Total damage in one hour approximately:</label><br>
     <input type="number" name="damage" [(ngModel)]="totalDamage">
   </mat-card>
-  <small>Mana Leech has a diminishing return of the amount of targets, so It was considered that there were always hitting 8 targets. Otherwise, accurcy shouldn't be affected that much</small>
+  <small>Mana Leech has a diminishing return of the amount of targets, so It was considered that there were always hitting 8 targets. Otherwise, accuracy shouldn't be affected that much</small>
   <ul>
     <li *ngIf="lifeLeech">Using the Life Leech imbues with that damage are saved {{savings[0]}} Great Health Potions or {{(savings[0]*80).toLocaleString()}}gp in one hour(market average value)</li>
     <li *ngIf="manaLeech">Using the Mana Leech imbues with that damage are saved {{savings[1]}} Great Mana Potions or {{(savings[1]*144).toLocaleString()}}gp in one hour (npc value)</li>
