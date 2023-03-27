@@ -1,1 +1,125 @@
-<h1>Imbuments costs</h1>
+<h1>Imbuements costs</h1>
+<!-- ==================Imbue costs============================ -->
+<h2>Cost of imbuements materials</h2>
+<p><small>Average prices of common imbues materials</small></p>
+<form class="imbueCost">
+  <div>
+    <label for="goldToken">Gold Token:</label>
+    <input type="number" id="goldToken" name="goldToken" [(ngModel)]="goldToken">
+  </div>
+  <div>
+    <label for="ropeBelt">Rope Belt:</label>
+    <input type="number" id="ropeBelt" name="ropeBelt" [(ngModel)]="ropeBelt">
+  </div>
+  <div>
+    <label for="silencerClaw">Silencer Claw:</label>
+    <input type="number" id="silencerClaw" name="silencerClaw" [(ngModel)]="silencerClaw">
+  </div>
+  <div>
+    <label for="grimleechWings">Grimleech Wings:</label>
+    <input type="number" id="grimleechWings" name="grimleechWings" [(ngModel)]="grimleechWings">
+  </div>
+  <div>
+    <label for="vampireTeeth">Vampire Teeth:</label>
+    <input type="number" id="vampireTeeth" name="vampireTeeth" [(ngModel)]="vampireTeeth">
+  </div>
+  <div>
+    <label for="bloodyPincer">Bloody Pincer:</label>
+    <input type="number" id="bloodyPincer" name="bloodyPincer" [(ngModel)]="bloodyPincer">
+  </div>
+  <div>
+    <label for="pieceOfDeadbrain">Piece of Dead Brain:</label>
+    <input type="number" id="pieceOfDeadbrain" name="pieceOfDeadbrain" [(ngModel)]="pieceOfDeadbrain">
+  </div>
+  <div>
+    <label for="protectiveCharm">Protective Charm:</label>
+    <input id="protectiveCharm" type="number" name="protectiveCharm" [(ngModel)]="protectiveCharm">
+  </div>
+  <div>
+    <label for="sabertooth">Sabertooth:</label>
+    <input id="sabertooth" type="number" name="sabertooth" [(ngModel)]="sabertooth">
+  </div>
+  <div>
+    <label for="vexclawTalon">Vexclaw Talon:</label>
+    <input id="vexclawTalon" type="number" name="vexclawTalon" [(ngModel)]="vexclawTalon">
+  </div>
+  <div>
+    <label for="extraImbue">Extra imbues total cost:</label>
+    <input id="extraImbue" type="number" name="extraImbue" [(ngModel)]="extraImbueCost">
+  </div>
+</form>
+<!-- =============================Imbue Selection================================== -->
+<form action="#" class="imbuementsNumber">
+  <mat-card>
+  <mat-card-content>
+    <mat-card-header><h2>Imbues selection</h2></mat-card-header>
+    <mat-checkbox name="lifeLeech"[(ngModel)]="lifeLeech">Life Leech'</mat-checkbox>
+    <mat-checkbox name="manaLeech" [(ngModel)]="manaLeech">Mana Leech</mat-checkbox>
+    <mat-checkbox name="criticalStrike" [(ngModel)]="criticalStrike">Critical</mat-checkbox>
+    <mat-checkbox name="extraImbue" [(ngModel)]="extraImbue">Extra imbue</mat-checkbox>
+  </mat-card-content>
+</mat-card>
+<div class="imbuesNumbersDiv">
+  <div *ngIf="lifeLeech">
+    <label for="lifeLeech">Life leech imbues</label>
+    <input type="number" name="lifeLeech" [(ngModel)]="lifeLeechNumber" >
+    <mat-form-field appearance="fill">
+      <mat-label>Stage of imbuement</mat-label>
+      <mat-select  name ="lifeStage"[(ngModel)]="lifeImbueStage">
+        <mat-option value=1>Basic</mat-option>
+        <mat-option value=2>Intricate</mat-option>
+        <mat-option value=3>Powerful</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="manaLeech">
+    <label for="manaLeech">Mana leech imbues</label>
+    <input type="number" name="manaLeech" [(ngModel)]="manaLeechNumber" >
+    <mat-form-field appearance="fill">
+      <mat-label>Stage of imbuement</mat-label>
+      <mat-select [(value)]="manaImbueStage">
+        <mat-option value=1>Basic</mat-option>
+        <mat-option value=2>Intricate</mat-option>
+        <mat-option value=3>Powerful</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="criticalStrike">
+    <label for="criticalStrike">Critical strike imbue</label>
+    <mat-form-field appearance="fill">
+      <mat-label>Stage of imbuement</mat-label>
+      <mat-select [(value)]="criticalImbueStage">
+        <mat-option value=1>Basic</mat-option>
+        <mat-option value=2>Intricate</mat-option>
+        <mat-option value=3>Powerful</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+</form>
+<div class="Results">
+  <mat-card>
+    <h2>Results</h2>
+    <button (click)="calculateHourCost()">Re-Calculate</button>
+  </mat-card>
+  <h3>Most efficient way to buy:</h3>
+  <ul>
+    <li *ngIf="lifeLeech">{{imbueResults[0]}}</li>
+    <li *ngIf="manaLeech">{{imbueResults[1]}}</li>
+    <li *ngIf="criticalStrike">{{imbueResults[2]}}</li>
+  </ul>
+  <h3>Total cost of imbues+imbue fee: {{(hourCost*20).toLocaleString()}}</h3>
+  <h3>Cost per hour: {{hourCost.toLocaleString()}}</h3>
+  <mat-card>
+    <h2>How much I save with imbues?</h2>
+    <label for="damage">Total damage in one hour approximately:</label><br>
+    <input type="number" name="damage" [(ngModel)]="totalDamage">
+  </mat-card>
+  <small>Mana Leech has a diminishing return of the amount of targets, so It was considered that there were always hitting 8 targets. Otherwise, accurcy shouldn't be affected that much</small>
+  <ul>
+    <li *ngIf="lifeLeech">Using the Life Leech imbues with that damage are saved {{savings[0]}} Great Health Potions or {{(savings[0]*80).toLocaleString()}}gp in one hour(market average value)</li>
+    <li *ngIf="manaLeech">Using the Mana Leech imbues with that damage are saved {{savings[1]}} Great Mana Potions or {{(savings[1]*144).toLocaleString()}}gp in one hour (npc value)</li>
+    <li *ngIf="criticalStrike">Using the Critical Strike imbue with that damage have an extra damage of {{(savings[2])}} in one hour</li>
+  </ul>
+</div>
+

@@ -1,3 +1,95 @@
 h1{
   text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+h3{
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+button {
+  padding: 0.5em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  margin: 1em auto 1em;
+  display: block;
+}
+p small {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+form.imbueCost {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  div {
+    width: 45%;
+    margin-bottom: 0.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+
+}
+input {
+  width: 50%;
+  padding: 0.25rem;
+  font-size: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 0.55rem;
+}
+form.imbuementsNumber {
+  margin-bottom: 1rem;
+
+  .imbuesNumbersDiv {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  mat-checkbox {
+    margin-bottom: 0.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1.0rem;
+  }
+
+  input[type="number"] {
+    width: 70px;
+    margin-right: 0.5rem;
+    padding: 0.25rem;
+    font-size: 1rem;
+    border: 1px solid #aaa;
+    border-radius: 0.25rem;
+  }
+
+  mat-select {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+ul li{
+  margin: 0.4rem;
 }
