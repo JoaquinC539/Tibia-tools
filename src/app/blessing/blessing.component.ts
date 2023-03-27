@@ -28,14 +28,14 @@ public blessingCost:string[]
     let blessingCost:number=0;
     let enhBlessingCost:number=0;
     this.blessingCost=[];
-    if(this.level<30){
-      this.blessingCost.push("Regular blessing costs for each 2000gp and 10,000gp for every of them")
-    }else if(this.level>30 && this.level<120){
-      blessingCost=2000+(200*this.level);
-      enhBlessingCost=2600+(260*this.level);
+    if(this.level<=30){
+      this.blessingCost.push("Regular blessing costs for each 2000gp and 10,000gp for all of them")
+    }else if(this.level>30 && this.level<=120){
+      blessingCost=2000+(200*this.level-200*30);
+      enhBlessingCost=2600+(260*this.level-260*30);
     }else{
-      blessingCost=20000+(75*this.level);
-      enhBlessingCost=26000+(100*this.level);
+      blessingCost=20000+(75*this.level-75*120);
+      enhBlessingCost=26000+(100*this.level-100*120);
     }
     this.blessingCost.push(`Regular blessing costs for each ${blessingCost.toLocaleString()}gp`);
     this.blessingCost.push(` All regular blessing costs ${(blessingCost*5).toLocaleString()}gp and ${(Number((blessingCost*5*1.1).toFixed(0))).toLocaleString()}gp for the inquisition blessing`)
