@@ -13,6 +13,7 @@ import { MeleeDamageComponent } from './melee-damage/melee-damage.component';
 import { DistanceDamageComponent } from './distance-damage/distance-damage.component';
 import { MagicDamageComponent } from './magic-damage/magic-damage.component';
 import { PaladinrotComponent } from './paladinrot/paladinrot.component';
+import { BlessingComponent } from './blessing/blessing.component';
 
 
 
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"rotations",component:RotationDamageComponent},
   {path:"skills",component:SkillsComponent},
-  {path:"imbuments",component:ImbumentsComponent}
+  {path:"imbuments",component:ImbumentsComponent},
+  {path:"blessings",component:BlessingComponent}
 ];
 
 @NgModule({
@@ -31,4 +33,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routeComponents=[LootSplitComponent,HomeComponent,KnightRotComponent,
   RotationDamageComponent,PalaSpellsComponent,KnightrotComponent,SkillsComponent,ImbumentsComponent,
-  MagicDamageComponent,MeleeDamageComponent,DistanceDamageComponent,PaladinrotComponent];
+  MagicDamageComponent,MeleeDamageComponent,DistanceDamageComponent,PaladinrotComponent,BlessingComponent];

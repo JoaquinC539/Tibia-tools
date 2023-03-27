@@ -27,6 +27,7 @@ import { PaladinSpells } from './Services/paladin';
 import { ChartService } from './Services/chart.service';
 import { CalculationsService } from './Services/calculations.service';
 
+
 //
 
 
@@ -34,6 +35,7 @@ import { CalculationsService } from './Services/calculations.service';
   declarations: [
     AppComponent,
     routeComponents,
+
 
 
 
