@@ -1,4 +1,4 @@
-<h1>Imbuements costs</h1><button (click)="test()">test</button>
+<h1>Imbuements costs</h1>
 <!-- ==================Imbue costs============================ -->
 <h2>Cost of imbuements materials</h2>
 <p><small>Average prices of common imbues materials</small></p>
@@ -100,7 +100,26 @@
 <div class="Results">
   <mat-card>
     <h2>Results</h2>
+    <button (click)="calculateHourCost()">Re-Calculate</button>
   </mat-card>
-
+  <h3>Most efficient way to buy:</h3>
+  <ul>
+    <li *ngIf="lifeLeech">{{imbueResults[0]}}</li>
+    <li *ngIf="manaLeech">{{imbueResults[1]}}</li>
+    <li *ngIf="criticalStrike">{{imbueResults[2]}}</li>
+  </ul>
+  <h3>Total cost of imbues+imbue fee: {{(hourCost*20).toLocaleString()}}</h3>
+  <h3>Cost per hour: {{hourCost.toLocaleString()}}</h3>
+  <mat-card>
+    <h2>How much I save with imbues?</h2>
+    <label for="damage">Total damage in one hour approximately:</label><br>
+    <input type="number" name="damage" [(ngModel)]="totalDamage">
+  </mat-card>
+  <small>Mana Leech has a diminishing return of the amount of targets, so It was considered that there were always hitting 8 targets. Otherwise, accurcy shouldn't be affected that much</small>
+  <ul>
+    <li *ngIf="lifeLeech">Using the Life Leech imbues with that damage are saved {{savings[0]}} Great Health Potions or {{(savings[0]*80).toLocaleString()}}gp in one hour(market average value)</li>
+    <li *ngIf="manaLeech">Using the Mana Leech imbues with that damage are saved {{savings[1]}} Great Mana Potions or {{(savings[1]*144).toLocaleString()}}gp in one hour (npc value)</li>
+    <li *ngIf="criticalStrike">Using the Critical Strike imbue with that damage have an extra damage of {{(savings[2])}} in one hour</li>
+  </ul>
 </div>
 
