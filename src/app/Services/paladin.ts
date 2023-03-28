@@ -40,7 +40,7 @@ export class PaladinSpells{
       {
         name:"Rune",
       mana:0,
-      cooldown:4,
+      cooldown:2,
       modifier:2.2,
       type: "damage",
       targets:10

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Mage } from '../Services/mage';
 
 @Component({
   selector: 'app-mage-spells',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mage-spells.component.scss']
 })
 export class MageSpellsComponent implements OnInit {
-
-  constructor() { }
+  public option:String;
+  public type:String;
+  public mageSpells:any[];
+  panelOpenState = false;
+  constructor(private MageSpell:Mage) {
+    this.option="Mage"
+    this.type="";
+    this.mageSpells=MageSpell.mageSpells;
+  }
 
   ngOnInit(): void {
+
   }
 
 }

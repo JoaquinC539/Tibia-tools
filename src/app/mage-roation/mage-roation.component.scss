@@ -1,0 +1,72 @@
+.rotations{
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px 7px;
+  .attacks-table{
+    width: 100%;
+    grid-row: 1;
+    border-collapse: collapse;
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      th,td{
+        border: solid 1px #c2185b;
+      }
+    }
+  }
+  .modifiers{
+    grid-row: 2;
+    justify-content: center;
+
+    input{
+      width: 30%;
+      background-color: rgb(95, 90, 90);
+      color:white;
+      font-weight: 400;
+      align-items: center;
+    }
+    .anotation{
+      width: 90%;
+      font-size: smaller;
+    }
+  }
+  .wrapper{
+    display: inline-flex;
+  }
+  .selectors{
+    width: 220px;
+    grid-row: 3;
+    grid-column: 1;
+  }
+  .buttons{
+    width: 150px;
+    align-items: baseline;
+    grid-row: 3;
+    grid-column: 1;
+    ul{
+      justify-items: left;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+      button{
+        width: 95%;
+      }
+    }
+  }
+}
+@media screen  and (min-width:573px){
+  .rotations{
+    width: 65%;
+    margin: 0 auto;
+    table{
+      width: 80%;
+    }
+    .modifiers{
+      input{
+        width: 5%;
+      }
+    }
+  }
+}
