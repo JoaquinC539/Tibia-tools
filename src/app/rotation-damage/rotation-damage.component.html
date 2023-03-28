@@ -6,6 +6,7 @@
     <mat-select [(value)]="vocation">
       <mat-option value="Knight">Knight</mat-option>
       <mat-option value="Paladin">Paladin</mat-option>
+      <mat-option value="Mage">Mage</mat-option>
     </mat-select>
   </mat-form-field><br>
 
@@ -13,11 +14,13 @@
   <div class="tables-container">
 <app-knight-rot *ngIf="vocation==='Knight'" class="knight-rot" ></app-knight-rot><br>
 <app-pala-spells *ngIf="vocation==='Paladin'" class="pala-rot"></app-pala-spells><br>
+<app-mage-spells *ngIf="vocation=='Mage'" class="mage-rot"></app-mage-spells>
   </div>
 
 <h2>Rotations</h2><br>
 <app-knightrot *ngIf="vocation==='Knight'"></app-knightrot>
 <app-paladinrot *ngIf="vocation==='Paladin'"></app-paladinrot>
+<app-mage-roation *ngIf="vocation==='Mage'"></app-mage-roation>
 </div>
 
 

@@ -18,7 +18,7 @@ export class PaladinSpells{
         name:"exevo mas san",
       mana:160,
       cooldown:4,
-      modifier:2.4,
+      modifier:6.75,
       type: "damage",
       targets:9
       },
@@ -41,7 +41,7 @@ export class PaladinSpells{
         name:"Rune",
       mana:0,
       cooldown:4,
-      modifier:0.4,
+      modifier:2.2,
       type: "damage",
       targets:10
       },
