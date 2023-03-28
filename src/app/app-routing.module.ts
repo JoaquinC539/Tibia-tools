@@ -14,6 +14,8 @@ import { DistanceDamageComponent } from './distance-damage/distance-damage.compo
 import { MagicDamageComponent } from './magic-damage/magic-damage.component';
 import { PaladinrotComponent } from './paladinrot/paladinrot.component';
 import { BlessingComponent } from './blessing/blessing.component';
+import { MageRoationComponent } from './mage-roation/mage-roation.component';
+import { MageSpellsComponent } from './mage-spells/mage-spells.component';
 
 
 
@@ -33,4 +35,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routeComponents=[LootSplitComponent,HomeComponent,KnightRotComponent,
   RotationDamageComponent,PalaSpellsComponent,KnightrotComponent,SkillsComponent,ImbumentsComponent,
-  MagicDamageComponent,MeleeDamageComponent,DistanceDamageComponent,PaladinrotComponent,BlessingComponent];
+  MagicDamageComponent,MeleeDamageComponent,DistanceDamageComponent,PaladinrotComponent,
+  BlessingComponent,MageRoationComponent,MageSpellsComponent];

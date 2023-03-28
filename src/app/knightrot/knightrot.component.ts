@@ -14,7 +14,7 @@ export class KnightrotComponent implements OnInit {
   public optionsCooldown:number[]=[];
   public optionsMana:number[]=[];
   public optionsModifer:number[]=[];
-  public optionsTargets:number[]=[]
+  public optionsTargets:number[]=[];
   public selectedAttack:string="exori";
   public selectedSupport:string="utito tempo";
   public optionSName:any[]=[];
@@ -96,6 +96,7 @@ export class KnightrotComponent implements OnInit {
   popLastOptionArray(){
     this.selectedAttacks.pop()
     this.error=false;
+    this.calculateModifiers();
   }
   Filloptions(spells:any[]){
     this.optionSDuration=[];
@@ -130,9 +131,9 @@ export class KnightrotComponent implements OnInit {
     for(let i=0;i<this.selectedAttacks.length;i++){
       let index:number=this.optionsName.indexOf(this.selectedAttacks[i]);
       let baseModifier=this.optionsModifer[index];
-      if(this.selectedAttack=="exori min" && this.targets>3){
+      if(this.selectedAttacks[i]=="exori min" && this.targets>3){
         this.optionsTargets.push(3);
-     } else if(this.selectedAttack!="exori mas" && this.targets>8){
+     } else if(this.selectedAttacks[i]!="exori mas" && this.targets>8){
         this.optionsTargets.push(8);
      }else{
         this.optionsTargets.push(this.targets);
@@ -165,5 +166,6 @@ export class KnightrotComponent implements OnInit {
     this.supportActive=[];
     this.ModifierSum=0;
     this.AvgMod=0;
+
   }
 }

@@ -1,0 +1,29 @@
+h1,h3{
+  text-align: center;
+}
+.container{
+  width: 100%;
+  justify-self: center;
+  margin: 0 auto;
+  text-align: center;
+.table{
+  display: flex;
+  justify-content: center;
+  table{
+    width: 80%;
+    border-collapse: separate;
+    border-spacing: 1px;
+    th,td{
+      border: 1px solid #c2185b;
+    }
+    td{
+      padding: 10px;
+    }
+  }
+}
+  }
+@media screen and (min-width: 734px){
+  .container{
+    max-width: 85%;
+  }
+}

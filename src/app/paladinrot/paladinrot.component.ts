@@ -62,6 +62,7 @@ export class PaladinrotComponent implements OnInit {
   popLastOptionArray(){
     this.selectedAttacks.pop()
     this.error=false
+    this.calculateModifiers();
   }
   addOptiontoArray(){
     this.error=false;
