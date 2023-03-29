@@ -24,6 +24,7 @@
 <li>Damage calculator for knight, paladins and mages in general in some nice graphs according to level and skills</li>
 <li>Train calculator</li>
 <li>Imbuing calculator (gold token, materials or mixed), cost of hunt per hour and savings</li>
+<li>Blessings cost<li>
 </ol>
 </h4>
 <h2>How to use the app offline: </h2>
