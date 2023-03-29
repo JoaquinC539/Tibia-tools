@@ -26,7 +26,7 @@
 <li>Imbuing calculator (gold token, materials or mixed), cost of hunt per hour and savings</li>
 </ol>
 </h4>
-<h2>How to use the app offline: <h2>
+<h2>How to use the app offline: </h2>
 <small>Since is just a front-end work no connection is needed to work</small>
 <p>This application was built using Angular, for using is needed to be installed NodeJS and Angular</p>
 <p>To run the application open a terminal (powershell is fine) and run the CLI command "cd c:/path/to/app" then run the command "ng serve"</p>
