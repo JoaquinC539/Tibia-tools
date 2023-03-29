@@ -1,5 +1,6 @@
 <h1> Tibia Tools</h1>
 <h4>Live at https://www.tibiatools.app</h4>
+![tibiaLogo](https://www.tibiawiki.com.br/images/5/52/Tibia_Logo.png)
 <p>I wanted to create and application to be a great calculator of all the mechanics thas involves a lot of number and calculus to answer some of my newcommer questions</p>
 <ul>
 <li>Is my level character damage good enough?</li>
