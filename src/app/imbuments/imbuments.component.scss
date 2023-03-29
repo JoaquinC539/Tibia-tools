@@ -68,6 +68,7 @@ form.imbuementsNumber {
 
   mat-checkbox {
     margin-bottom: 0.5rem;
+    margin: 2px 0.3rem
   }
 
   label {
@@ -92,4 +93,18 @@ form.imbuementsNumber {
 }
 ul li{
   margin: 0.4rem;
+}
+@media screen and (min-width:785px) {
+  form.imbuementsNumber{
+    mat-checkbox{
+      margin: 2px 0.5rem;
+    }
+  }
+}
+@media screen and (min-width:975px){
+  form.imbuementsNumber{
+    mat-checkbox{
+      margin: 2px 3rem;
+    }
+  }
 }

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-
+import { Mage } from './mage';
+import { PaladinSpells } from './paladin';
+import { Spell } from '../interfaces/spell.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class CalculationsService {
 
-  constructor() { }
+  constructor(private mageSpells:Mage, private paladinSpells:PaladinSpells) { }
 
   calculateLevelMeleeDamage(level:number,stance:string,weaponAttack:number,skill:number,armor:number,resistance:number):{}{
     let data:{};
@@ -147,6 +149,13 @@ export class CalculationsService {
     let greatRuneDamage:number[]=[];
     let suddenDeathDamage:number[]=[];
     let exevoMasSanDamage:number[]=[];
+    let lesserWaveDamage:number[]=[];
+    let strongWaveDamage:number[]=[];
+    let greatRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name=="Rune")?.modifier;
+    let SDRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="SD Rune")?.modifier;
+    let masSanModifier=this.paladinSpells.spells.find((spell)=>spell.name==="exevo mas san")?.modifier;
+    let lesserWaveModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="Lesser wave (terra wave/great fire wave)")?.modifier;
+    let strongWaveModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="Strong wave (strong ice wave/energy wave)")?.modifier
     resistance=resistance/100
     try{
       for(let i=level;i<=1500;i+=10){
@@ -155,9 +164,12 @@ export class CalculationsService {
       for(let i=0;i<levels.length;i++){
         let S:number=((Math.sqrt(2*levels[i]+2025)+5)/10);
         let baseDamage:number=(((levels[i]+1000)/S)-50*S)+(100*S)-450;
-        greatRuneDamage.push((skill*2.2)+baseDamage);
-        suddenDeathDamage.push((skill*7.45)+baseDamage);
-        exevoMasSanDamage.push((skill*6.75)+baseDamage);
+
+        greatRuneDamage.push((skill*greatRuneModifier!)+baseDamage);
+        suddenDeathDamage.push((skill*SDRuneModifier!)+baseDamage);
+        exevoMasSanDamage.push((skill*masSanModifier!)+baseDamage);
+        lesserWaveDamage.push((skill*lesserWaveModifier!)+baseDamage);
+        strongWaveDamage.push((skill*strongWaveModifier!)+baseDamage);
       }
     }catch(e){console.log(e)}
     data={levels:levels,
@@ -165,6 +177,8 @@ export class CalculationsService {
             runeDamage:greatRuneDamage,
             SDdamage:suddenDeathDamage,
             San:exevoMasSanDamage,
+            lWave:lesserWaveDamage,
+            sWave:strongWaveDamage
           }
     }
     return data;
@@ -175,6 +189,13 @@ export class CalculationsService {
     let greatRuneDamage:number[]=[];
     let suddenDeathDamage:number[]=[];
     let exevoMasSanDamage:number[]=[];
+    let lesserWaveDamage:number[]=[];
+    let strongWaveDamage:number[]=[];
+    let greatRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name=="Rune")?.modifier;
+    let SDRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="SD Rune")?.modifier;
+    let masSanModifier=this.paladinSpells.spells.find((spell)=>spell.name==="exevo mas san")?.modifier;
+    let lesserWaveModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="Lesser wave (terra wave/great fire wave)")?.modifier;
+    let strongWaveModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="Strong wave (strong ice wave/energy wave)")?.modifier
     try{
     resistance=resistance/100
     let S:number=((Math.sqrt(2*level+2025)+5)/10);
@@ -185,11 +206,12 @@ export class CalculationsService {
       }
       for(let i=0;i<skills.length;i++){
 
-        greatRuneDamage.push((skills[i]*2.2)+baseDamage);
-        suddenDeathDamage.push((skills[i]*7.45)+baseDamage);
-        exevoMasSanDamage.push((skills[i]*6.75)+baseDamage);
+        greatRuneDamage.push((skills[i]*greatRuneModifier!)+baseDamage);
+        suddenDeathDamage.push((skills[i]*SDRuneModifier!)+baseDamage);
+        exevoMasSanDamage.push((skills[i]*masSanModifier!)+baseDamage);
+        lesserWaveDamage.push((skills[i]*lesserWaveModifier!)+baseDamage);
+        strongWaveDamage.push((skills[i]*strongWaveModifier!)+baseDamage);
       }
-
 
 
     }catch(e){console.log(e)}
@@ -198,6 +220,8 @@ export class CalculationsService {
         runeDamage:greatRuneDamage,
         SDdamage:suddenDeathDamage,
         San:exevoMasSanDamage,
+        lWave:lesserWaveDamage,
+        sWave:strongWaveDamage
       }}
     return data;
   }
