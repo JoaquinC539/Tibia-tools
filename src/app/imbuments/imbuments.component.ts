@@ -252,7 +252,7 @@ calculateHourCost(){
     this.hourCost+=criticalCost/20;
   }
   if(this.extraImbue){
-    this.extraImbueCost+=extraImbueCost/20;
+    this.hourCost+=extraImbueCost/20;
   }
 this.calculateImbueSavings();
 }
@@ -279,7 +279,7 @@ calculateImbueSavings(){
     switch(Number(this.lifeImbueStage)){
       case 1: lifeLeeched=this.lifeLeechNumber*damageWithCrit*0.05; break;
       case 2: lifeLeeched=this.lifeLeechNumber*damageWithCrit*0.1; break;
-      case 3: lifeLeeched=this.lifeLeechNumber*damageWithCrit*0.5; break;
+      case 3: lifeLeeched=this.lifeLeechNumber*damageWithCrit*0.25; break;
     }
     this.savings[0]=Number((lifeLeeched/500).toFixed(0));
   }
