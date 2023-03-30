@@ -56,7 +56,6 @@ export class MagicDamageComponent implements OnInit,OnDestroy {
 
       levelData=this.calculation.calculateLevelMagicDamage(this.level,this.skill,this.resistance);
       skillData=this.calculation.calculateSkillMagicDamage(this.level,this.skill,this.resistance,maxSkill);
-      console.log(skillData)
       this.levelChart=this.chartService.createPaladinMagicLevelChart(levelData.levels,levelData.damage.runeDamage,levelData.damage.San,"GFB Damage","Exevo Mas San Damage");
       this.skillChart=this.chartService.createPaladinMagicSkillChart(skillData.skills,skillData.damage.runeDamage,skillData.damage.San,"GFB Damage","Exevo Mas San Damage");
 
