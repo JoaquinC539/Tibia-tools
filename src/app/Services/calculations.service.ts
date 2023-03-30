@@ -151,7 +151,7 @@ export class CalculationsService {
     let exevoMasSanDamage:number[]=[];
     let lesserWaveDamage:number[]=[];
     let strongWaveDamage:number[]=[];
-    let greatRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name=="Rune")?.modifier;
+    let greatRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name=="Avalanche Rune")?.modifier;
     let SDRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="SD Rune")?.modifier;
     let masSanModifier=this.paladinSpells.spells.find((spell)=>spell.name==="exevo mas san")?.modifier;
     let lesserWaveModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="Lesser wave (terra wave/great fire wave)")?.modifier;
@@ -191,7 +191,7 @@ export class CalculationsService {
     let exevoMasSanDamage:number[]=[];
     let lesserWaveDamage:number[]=[];
     let strongWaveDamage:number[]=[];
-    let greatRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name=="Rune")?.modifier;
+    let greatRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name=="Avalanche Rune")?.modifier;
     let SDRuneModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="SD Rune")?.modifier;
     let masSanModifier=this.paladinSpells.spells.find((spell)=>spell.name==="exevo mas san")?.modifier;
     let lesserWaveModifier=this.mageSpells.mageSpells.find((spell)=>spell.name==="Lesser wave (terra wave/great fire wave)")?.modifier;
