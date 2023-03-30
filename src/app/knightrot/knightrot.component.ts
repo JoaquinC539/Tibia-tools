@@ -127,7 +127,7 @@ export class KnightrotComponent implements OnInit {
     this.ModifierSum=0;
     this.AvgMod=0;
     let finalModifier:number=0;
-    this.optionsTargets=[];
+
     for(let i=0;i<this.selectedAttacks.length;i++){
       let index:number=this.optionsName.indexOf(this.selectedAttacks[i]);
       let baseModifier=this.optionsModifer[index];

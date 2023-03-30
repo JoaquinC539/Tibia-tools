@@ -129,7 +129,7 @@ export class PaladinrotComponent implements OnInit {
     this.ModifierSum=0;
     this.AvgMod=0;
     this.ModifierSum=0;
-    this.optionsTargets=[];
+
     let finalModifier:number=0;
     this.arrowCount=[];
     this.modifiers=[];

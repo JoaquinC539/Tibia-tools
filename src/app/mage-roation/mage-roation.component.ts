@@ -74,9 +74,11 @@ export class MageRoationComponent implements OnInit {
           this.selectedAttacks.push(this.selectedAttack);
           this.UEused = 19;
           this.selectedAttacks.push("Rune");
+
           this.calculateModifiers();
         }else {
           this.selectedAttacks.push(this.selectedAttack);
+
           this.calculateModifiers();
           this.UEused -= (this.UEused >= 1) ? 1 : 0;
         }
@@ -102,13 +104,14 @@ export class MageRoationComponent implements OnInit {
     this.AvgMod=0;
     this.UEused=0;
 
+
   }
   calculateModifiers(){
     this.finalModifiers=[];
     this.ModifierSum=0;
     this.AvgMod=0;
     let finalModifier:number=0;
-    this.optionsTargets=[];
+
     for(let i=0;i<this.selectedAttacks.length;i++){
       let index:number=this.optionsName.indexOf(this.selectedAttacks[i]);
       let baseModifier=this.optionsModifer[index];
@@ -117,8 +120,9 @@ export class MageRoationComponent implements OnInit {
      } else{
         this.optionsTargets.push(this.targets);
      }
-     let target:number=this.optionsTargets[i];
-      finalModifier=Math.ceil(baseModifier*target*10)/10;
+
+     console.log(this.optionsTargets);
+      finalModifier=Math.ceil(baseModifier*this.optionsTargets[i]*10)/10;
     this.finalModifiers.push(finalModifier);
     }
     this.ModifierSum=Math.ceil(this.finalModifiers.reduce((acc,current)=>acc+current,0)*10)/10
