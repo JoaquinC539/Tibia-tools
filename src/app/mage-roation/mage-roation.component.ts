@@ -121,7 +121,7 @@ export class MageRoationComponent implements OnInit {
         this.optionsTargets.push(this.targets);
      }
 
-     console.log(this.optionsTargets);
+
       finalModifier=Math.ceil(baseModifier*this.optionsTargets[i]*10)/10;
     this.finalModifiers.push(finalModifier);
     }
