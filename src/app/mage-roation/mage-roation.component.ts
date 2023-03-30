@@ -50,7 +50,7 @@ export class MageRoationComponent implements OnInit {
       if ((this.selectedAttack === "Ultimate Explosion" || this.selectedAttack === "Lesser Ultimate Explosion") && this.UEused === 0) {
         this.selectedAttacks.push(this.selectedAttack);
         this.UEused = 19;
-        this.selectedAttacks.push("Rune");
+        this.selectedAttacks.push("Avalanche Rune");
         this.calculateModifiers();
       } else if (this.selectedAttack !== "Ultimate Explosion" && this.selectedAttack !== "Lesser Ultimate Explosion") {
         this.selectedAttacks.push(this.selectedAttack);
@@ -73,7 +73,7 @@ export class MageRoationComponent implements OnInit {
         if ((this.selectedAttack === "Ultimate Explosion" || this.selectedAttack === "Lesser Ultimate Explosion") && this.UEused === 0) {
           this.selectedAttacks.push(this.selectedAttack);
           this.UEused = 19;
-          this.selectedAttacks.push("Rune");
+          this.selectedAttacks.push("Avalanche Rune");
 
           this.calculateModifiers();
         }else {

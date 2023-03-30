@@ -43,7 +43,7 @@ export class Mage{
       targets:8,
     },
     {
-      name:"Rune",
+      name:"Avalanche Rune",
     mana:0,
     cooldown:2,
     modifier:2.2,
