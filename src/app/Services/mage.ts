@@ -73,7 +73,16 @@ export class Mage{
     modifier:7.2,
     type: "damage",
     targets:10
+    },
+    {
+      name:"Empty Turn",
+      mana:0,
+      cooldown:0,
+      modifier:0,
+      type: "other",
+      targets:0
     }
+
   ]
     }
 

@@ -21,6 +21,7 @@ export class MageRoationComponent implements OnInit {
   public finalModifiers:any[]=[];
   public optionsTargets:number[]=[];
   public UEused:number=0;
+  public waveError:boolean=false;
   constructor(private mageSpells:Mage) {
     this.type="";
    }
@@ -33,7 +34,7 @@ export class MageRoationComponent implements OnInit {
       this.optionsCooldown=[];
       this.optionsModifer=[];
   for(let i=0;i<spells.length;i++){
-    if(spells[i].type=="damage"   ){
+    if(spells[i].type=="damage"  || spells[i].type=="other" ){
       this.optionsName.push(spells[i].name);
       this.optionsCooldown.push(spells[i].cooldown);
       this.optionsModifer.push(spells[i].modifier);
@@ -41,15 +42,19 @@ export class MageRoationComponent implements OnInit {
   }
   }
   addOptiontoArray(){
+    this.waveError=false;
     this.error=false;
     let index=this.optionsName.indexOf(this.selectedAttack);
     let turnCooldown=this.optionsCooldown[index]/2;
     let exist=this.selectedAttacks.indexOf(this.selectedAttack);
+    if((this.selectedAttacks.length>0 && this.selectedAttacks[this.selectedAttacks.length-1]==="Ultimate Explosion" && (this.selectedAttack==="Strong wave (strong ice wave/energy wave)" || this.selectedAttack==="Lesser wave (terra wave/great fire wave)"))
+    || (this.selectedAttacks.length>0 && this.selectedAttacks[this.selectedAttacks.length-1]==="Lesser Ultimate Explosion" && (this.selectedAttack==="Strong wave (strong ice wave/energy wave)" || this.selectedAttack==="Lesser wave (terra wave/great fire wave)"))){
+      this.waveError=true;
+    }else{
      if(exist===-1){
       if ((this.selectedAttack === "Ultimate Explosion" || this.selectedAttack === "Lesser Ultimate Explosion") && this.UEused === 0) {
         this.selectedAttacks.push(this.selectedAttack);
         this.UEused = 19;
-        this.selectedAttacks.push("Avalanche Rune");
         this.calculateModifiers();
       } else if (this.selectedAttack !== "Ultimate Explosion" && this.selectedAttack !== "Lesser Ultimate Explosion") {
         this.selectedAttacks.push(this.selectedAttack);
@@ -58,8 +63,6 @@ export class MageRoationComponent implements OnInit {
       } else {
         this.error = true;
       }
-
-
       //If it has been pushed do the next checks
     }else {
       //first get the last index
@@ -71,11 +74,9 @@ export class MageRoationComponent implements OnInit {
         if ((this.selectedAttack === "Ultimate Explosion" || this.selectedAttack === "Lesser Ultimate Explosion") && this.UEused === 0) {
           this.selectedAttacks.push(this.selectedAttack);
           this.UEused = 19;
-          this.selectedAttacks.push("Avalanche Rune");
           this.calculateModifiers();
         }else {
           this.selectedAttacks.push(this.selectedAttack);
-
           this.calculateModifiers();
           this.UEused -= (this.UEused >= 1) ? 1 : 0;
         }
@@ -84,12 +85,22 @@ export class MageRoationComponent implements OnInit {
       }
     }
   }
+  }
   popLastOptionArray(){
+    if(this.selectedAttacks[this.selectedAttacks.length-1]==="Ultimate Explosion"
+    ||this.selectedAttacks[this.selectedAttacks.length-1]==="Lesser Ultimate Explosion"){
+      this.selectedAttacks.pop();
+      this.optionsTargets.pop();
+      this.UEused=0;
+      this.calculateModifiers();
+      this.error=false;
+    }else{
     this.selectedAttacks.pop();
     this.optionsTargets.pop();
     this.error=false;
     this.calculateModifiers();
   }
+}
   resetAll(){
     this.finalModifiers=[];
     this.selectedAttacks=[];
@@ -97,13 +108,15 @@ export class MageRoationComponent implements OnInit {
     this.ModifierSum=0;
     this.AvgMod=0;
     this.UEused=0;
+    this.error=false;
+    this.waveError=false;
   }
   calculateModifiers(){
     this.finalModifiers=[];
+    this.optionsTargets=[];
     this.ModifierSum=0;
     this.AvgMod=0;
     let finalModifier:number=0;
-
     for(let i=0;i<this.selectedAttacks.length;i++){
       let index:number=this.optionsName.indexOf(this.selectedAttacks[i]);
       let baseModifier=this.optionsModifer[index];
@@ -112,8 +125,6 @@ export class MageRoationComponent implements OnInit {
      } else{
         this.optionsTargets.push(this.targets);
      }
-
-
       finalModifier=Math.ceil(baseModifier*this.optionsTargets[i]*10)/10;
     this.finalModifiers.push(finalModifier);
     }
