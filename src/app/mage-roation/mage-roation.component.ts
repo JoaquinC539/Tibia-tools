@@ -27,7 +27,6 @@ export class MageRoationComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillOptions(this.mageSpells.mageSpells);
-    console.log(this.UEused);
   }
   fillOptions(spells:any){
   this.optionsName=[];
@@ -63,7 +62,6 @@ export class MageRoationComponent implements OnInit {
 
       //If it has been pushed do the next checks
     }else {
-
       //first get the last index
       let lastUseIndex=this.selectedAttacks.lastIndexOf(this.selectedAttack)
       //Then calculate the distance
@@ -74,7 +72,6 @@ export class MageRoationComponent implements OnInit {
           this.selectedAttacks.push(this.selectedAttack);
           this.UEused = 19;
           this.selectedAttacks.push("Avalanche Rune");
-
           this.calculateModifiers();
         }else {
           this.selectedAttacks.push(this.selectedAttack);
@@ -82,17 +79,14 @@ export class MageRoationComponent implements OnInit {
           this.calculateModifiers();
           this.UEused -= (this.UEused >= 1) ? 1 : 0;
         }
-
-
       }else{
         this.error=true;
       }
     }
-
   }
-
   popLastOptionArray(){
-    this.selectedAttacks.pop()
+    this.selectedAttacks.pop();
+    this.optionsTargets.pop();
     this.error=false;
     this.calculateModifiers();
   }
@@ -103,8 +97,6 @@ export class MageRoationComponent implements OnInit {
     this.ModifierSum=0;
     this.AvgMod=0;
     this.UEused=0;
-
-
   }
   calculateModifiers(){
     this.finalModifiers=[];
