@@ -238,9 +238,11 @@ calculateHourCost(){
   let manaCost:number;
   let criticalCost:number;
   let extraImbueCost:number;
+
   lifeCost=outputs[0][1]*this.lifeLeechNumber;
   manaCost=outputs[1][1]*this.manaLeechNumber;
-  criticalCost=outputs[1][1]*1;
+  criticalCost=outputs[2][1]*1;
+
   extraImbueCost=this.extraImbueCost;
   if(this.lifeLeech){
     this.hourCost+=lifeCost/20;

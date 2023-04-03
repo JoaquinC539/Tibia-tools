@@ -47,13 +47,14 @@ export class MageRoationComponent implements OnInit {
     let index=this.optionsName.indexOf(this.selectedAttack);
     let turnCooldown=this.optionsCooldown[index]/2;
     let exist=this.selectedAttacks.indexOf(this.selectedAttack);
-    if((this.selectedAttacks.length>0 && this.selectedAttacks[this.selectedAttacks.length-1]==="Ultimate Explosion" && (this.selectedAttack==="Strong wave (strong ice wave/energy wave)" || this.selectedAttack==="Lesser wave (terra wave/great fire wave)"))
-    || (this.selectedAttacks.length>0 && this.selectedAttacks[this.selectedAttacks.length-1]==="Lesser Ultimate Explosion" && (this.selectedAttack==="Strong wave (strong ice wave/energy wave)" || this.selectedAttack==="Lesser wave (terra wave/great fire wave)"))){
+    if((this.selectedAttacks.length>0 && this.selectedAttacks[this.selectedAttacks.length-1]==="Ultimate Explosion" && (this.selectedAttack!=="Empty Turn"))
+    || (this.selectedAttacks.length>0 && this.selectedAttacks[this.selectedAttacks.length-1]==="Lesser Ultimate Explosion" && (this.selectedAttack!=="Empty Turn"))){
       this.waveError=true;
     }else{
      if(exist===-1){
       if ((this.selectedAttack === "Ultimate Explosion" || this.selectedAttack === "Lesser Ultimate Explosion") && this.UEused === 0) {
         this.selectedAttacks.push(this.selectedAttack);
+        this.selectedAttacks.push("Empty Turn");
         this.UEused = 19;
         this.calculateModifiers();
       } else if (this.selectedAttack !== "Ultimate Explosion" && this.selectedAttack !== "Lesser Ultimate Explosion") {
@@ -73,6 +74,7 @@ export class MageRoationComponent implements OnInit {
       if(spaceBetween-turnCooldown>=0){
         if ((this.selectedAttack === "Ultimate Explosion" || this.selectedAttack === "Lesser Ultimate Explosion") && this.UEused === 0) {
           this.selectedAttacks.push(this.selectedAttack);
+          this.selectedAttacks.push("Empty Turn");
           this.UEused = 19;
           this.calculateModifiers();
         }else {

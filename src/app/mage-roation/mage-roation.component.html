@@ -10,7 +10,7 @@
       <td><ol><li *ngFor="let modifier of finalModifiers">{{modifier}}</li></ol></td>
     </tr>
   </table>
-  <span *ngIf="waveError" class="error-message">It is not possible to use a wave spell after a UE spell, select a rune or "empty turn"</span>
+  <span *ngIf="waveError" class="error-message">It is not possible to use a offensive spell or rune after a UE spell,select "empty turn"</span>
     <span *ngIf="error" class="error-message">Cooldown not matching!</span>
   </div>
   <div class="modifiers">
