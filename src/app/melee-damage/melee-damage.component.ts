@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, DoCheck, OnDestroy } from '@angular/core';
 import { ChartService } from '../Services/chart.service';
 import { CalculationsService } from '../Services/calculations.service';
-import { Console } from 'console';
+
 
 @Component({
   selector: 'app-melee-damage',

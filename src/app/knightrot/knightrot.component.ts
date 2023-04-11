@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KnightCalculations } from '../Services/knight';
-import { Console } from 'console';
+
 
 @Component({
   selector: 'app-knightrot',
