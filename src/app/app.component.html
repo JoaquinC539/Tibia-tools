@@ -15,14 +15,12 @@
   </mat-sidenav>
   <mat-sidenav-content class="main-window">
     <mat-toolbar class ="toolbar" color="primary">
-      <button
-      class="toggle-button"
+      <button class="toggleButton">
+        <mat-icon aria-label="home icon" class="toggleIcon"       class="toggle-button"
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-      (click)="drawer.toggle()"
-        >
-        <mat-icon aria-label="home icon">menu</mat-icon>
+      (click)="drawer.toggle()">menu</mat-icon>
       </button>
       <h1 class="main-title">Tibia Tools</h1>
       <div class="icons">
