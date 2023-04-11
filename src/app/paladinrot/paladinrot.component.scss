@@ -31,19 +31,17 @@
       font-size: smaller;
     }
   }
-  .wrapper{
-    display: inline-flex;
-  }
+
   .selectors{
     width: 220px;
-    grid-row: 3;
+    grid-row: 2;
     grid-column: 1;
   }
   .buttons{
     width: 150px;
     align-items: baseline;
-    grid-row: 3;
-    grid-column: 1;
+    grid-row: 2;
+    grid-column: 2;
     ul{
       justify-items: left;
       padding: 0;
@@ -51,9 +49,12 @@
     li{
       list-style: none;
       button{
-        width: 95%;
+          margin-top: 5px;
+          height: 40px;
+          width: 95%;
       }
     }
+
   }
 }
 @media screen  and (min-width:573px){
