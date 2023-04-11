@@ -36,11 +36,16 @@
   span{
     line-height: 2px;
   }
+  .toggle-button{
+    background-color: #c2185b;
+    color: #fff;
+  }
   mat-icon{
     font-size: 36px;
   }
   .main-title{
     font-size: larger;
+    margin: 0;
   }
   .icons{
     width: 20px;
