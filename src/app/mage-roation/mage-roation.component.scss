@@ -39,6 +39,9 @@
     grid-row: 3;
     grid-column: 1;
   }
+  mat-option{
+    font-size: 15px ;
+  }
   .buttons{
     width: 150px;
     align-items: baseline;
@@ -51,6 +54,8 @@
     li{
       list-style: none;
       button{
+        margin-top: 5px;
+        height: 40px;
         width: 95%;
       }
     }

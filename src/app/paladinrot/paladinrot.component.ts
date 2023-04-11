@@ -5,7 +5,7 @@ import { PaladinSpells } from '../Services/paladin';
 @Component({
   selector: 'app-paladinrot',
   templateUrl: './paladinrot.component.html',
-  styleUrls: ['./paladinrot.component.scss']
+  styleUrls: ['../knightrot/knightrot.component.scss']
 })
 export class PaladinrotComponent implements OnInit {
   public type:String;
