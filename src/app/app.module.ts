@@ -6,18 +6,18 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Material Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatLegacySlideToggleModule as MatSlideToggleModule} from '@angular/material/legacy-slide-toggle';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import {MatTableModule} from '@angular/material/table';
-import { MatSelectModule } from '@angular/material/select';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
+import {MatLegacyTableModule as MatTableModule} from '@angular/material/legacy-table';
+import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
 import {MatExpansionModule} from '@angular/material/expansion'
-import {MatCheckboxModule} from '@angular/material/checkbox'
-import {MatCardModule} from '@angular/material/card';
+import {MatLegacyCheckboxModule as MatCheckboxModule} from '@angular/material/legacy-checkbox'
+import {MatLegacyCardModule as MatCardModule} from '@angular/material/legacy-card';
 //service
 import { RequestService } from './Requestservice.service';
 import { KnightCalculations } from './Services/knight';
