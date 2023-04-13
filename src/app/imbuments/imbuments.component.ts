@@ -288,9 +288,9 @@ calculateImbueSavings(){
   if(this.manaLeech){
     let manaLeeched=0;
     switch(Number(this.manaImbueStage)){
-      case 1:manaLeeched=this.manaLeechNumber*damageWithCrit*0.03*(1.1125); break;
-      case 2:manaLeeched=this.manaLeechNumber*damageWithCrit*0.05*(1.1125); break;
-      case 3:manaLeeched=this.manaLeechNumber*damageWithCrit*0.08*(1.1125); break;
+      case 1:manaLeeched=this.manaLeechNumber*damageWithCrit*0.03*(0.89); break;
+      case 2:manaLeeched=this.manaLeechNumber*damageWithCrit*0.05*(0.89); break;
+      case 3:manaLeeched=this.manaLeechNumber*damageWithCrit*0.08*(0.89); break;
     }
 
     this.savings[1]=Number((manaLeeched/200).toFixed(0));
