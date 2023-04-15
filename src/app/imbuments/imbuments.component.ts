@@ -80,34 +80,31 @@ export class ImbumentsComponent implements OnInit{
           break;
         }
         case 2: {
-          const goldTokenExchangePrice = goldTokenPrice * 2;
-          const cheapestOption = Math.min(bloodyPincerPrice + vampireTeethPrice, goldTokenExchangePrice);
 
-          if (cheapestOption === goldTokenExchangePrice) {
+          const cheapestOption = Math.min(bloodyPincerPrice + vampireTeethPrice, goldTokenPrice*2);
+
+          if (cheapestOption === goldTokenPrice*2) {
             result = ["Buy gold tokens and exchange them for vampire teeth and bloody pincers", cheapestOption+55000];
-          } else if (cheapestOption < goldTokenExchangePrice) {
-            result = ["Buy the vampire teeth and bloody pincers at the market", cheapestOption+55000];
-          } else {
-            const exchangeOption = (goldTokenExchangePrice / 2) + bloodyPincerPrice;
+          } else if (cheapestOption > bloodyPincerPrice+this.goldToken*2) {
+            const exchangeOption = (goldTokenPrice) + bloodyPincerPrice;
             result = ["Exchange gold tokens for vampire teeth and buy bloody pincers in the market", exchangeOption+55000];
+          } else {
+            result = ["Buy the vampire teeth and bloody pincers at the market", cheapestOption+55000];
           }
           break;
         }
         case 3: {
           const pieceOfDeadbrainPrice = this.pieceOfDeadbrain * 5;
-          const cheapestOption = Math.min(
-            pieceOfDeadbrainPrice + bloodyPincerPrice + vampireTeethPrice,
-            this.goldToken * 6
-          );
+          const materialsCost = pieceOfDeadbrainPrice + bloodyPincerPrice + vampireTeethPrice;
 
-          if (cheapestOption === this.goldToken * 6) {
-            result = ["Exchange all materials from gold tokens", cheapestOption+150000];
-          }  else if (pieceOfDeadbrainPrice + ( this.goldToken* 4) < vampireTeethPrice + bloodyPincerPrice + pieceOfDeadbrainPrice+150000) {
+          if (materialsCost > this.goldToken * 6) {
+            result = ["Exchange all materials from gold tokens", this.goldToken*6+150000];
+          } else if (pieceOfDeadbrainPrice + ( this.goldToken* 4) < materialsCost) {
             result = ["Buy the pieces of dead brain at market and exchange gold token for vampire teeth and bloody pincers", pieceOfDeadbrainPrice + (this.goldToken*4)+150000];
-          } else if (bloodyPincerPrice + pieceOfDeadbrainPrice + (this.goldToken*2) < pieceOfDeadbrainPrice + (this.goldToken*4)) {
+          } else if (bloodyPincerPrice + pieceOfDeadbrainPrice + (this.goldToken*2) < materialsCost) {
             result = ["Buy the pieces of dead brain and bloody pincers at market and exchange gold token for vampire teeth", bloodyPincerPrice + pieceOfDeadbrainPrice + (this.goldToken*2)+150000];
           } else {
-            result = ["Buy all material from market", vampireTeethPrice + bloodyPincerPrice + pieceOfDeadbrainPrice+150000];
+            result = ["Buy vampire teeth, bloody pincers and dead brains at market", vampireTeethPrice + bloodyPincerPrice + pieceOfDeadbrainPrice+150000];
           }
           break;
         }
@@ -140,25 +137,21 @@ export class ImbumentsComponent implements OnInit{
 
           if (cheapestOption === goldTokenExchangePrice) {
             result = ["Buy gold tokens and exchange them for rope belts and silencer claw", cheapestOption+55000];
-          } else if (cheapestOption < goldTokenExchangePrice) {
-            result = ["Buy the rope belt and silencer claws at the market", cheapestOption+55000];
-          } else {
-            const exchangeOption = (goldTokenExchangePrice / 2) + silencerClawPrice;
+          } else if (cheapestOption > goldTokenPrice +silencerClawPrice) {
+            const exchangeOption = (goldTokenPrice) + silencerClawPrice;
             result = ["Exchange gold tokens for rope belts and buy silencer claws in the market", exchangeOption+55000];
+          } else {
+            result = ["Buy the rope belt and silencer claws at the market", cheapestOption+55000];
           }
           break;
         }
         case 3: {
-          const cheapestOption = Math.min(
-            grimLeechWingsPrice + silencerClawPrice + ropeBeltPrice,
-            this.goldToken * 6
-          );
-
-          if (cheapestOption === this.goldToken * 6) {
-            result = ["Exchange all materials from gold tokens", cheapestOption+150000];
-          } else if (grimLeechWingsPrice + (this.goldToken*4) < ropeBeltPrice + silencerClawPrice + grimLeechWingsPrice) {
+          const materialsCosts = grimLeechWingsPrice + silencerClawPrice + ropeBeltPrice;
+          if (materialsCosts > this.goldToken * 6) {
+            result = ["Exchange all materials from gold tokens", this.goldToken*6+150000];
+          } else if (grimLeechWingsPrice + (this.goldToken*4) < materialsCosts) {
             result = ["Buy the grimleech wings at market and exchange gold token for rope belt and silencer claws", grimLeechWingsPrice + (this.goldToken*4)+150000];
-          } else if (silencerClawPrice + grimLeechWingsPrice + (this.goldToken*2) < grimLeechWingsPrice + (this.goldToken*4)) {
+          } else if (silencerClawPrice + grimLeechWingsPrice + (this.goldToken*2) < materialsCosts) {
             result = ["Buy the grimleech wings and silencer claws at market and exchange gold token for rope belt", silencerClawPrice + grimLeechWingsPrice + (this.goldToken*2)+150000];
           } else {
             result = ["Buy all material from market", ropeBeltPrice + silencerClawPrice + grimLeechWingsPrice+150000];
@@ -194,11 +187,11 @@ export class ImbumentsComponent implements OnInit{
 
           if (cheapestOption === goldTokenExchangePrice) {
             result = ["Buy gold tokens and exchange them for protective charms and saberteeth", cheapestOption+55000];
-          } else if (cheapestOption < goldTokenExchangePrice) {
-            result = ["Buy the protective charms and saberteeth at the market", cheapestOption+55000];
-          } else {
-            const exchangeOption = (goldTokenExchangePrice / 2) + sabertoothPrice;
+          } else if (sabertoothPrice+goldTokenPrice < sabertoothPrice+protectiveCharmPrice) {
+            const exchangeOption = (goldTokenPrice) + sabertoothPrice;
             result = ["Exchange gold tokens for protective charms and buy saberteeth in the market", exchangeOption+55000];
+          } else {
+            result = ["Buy the protective charms and saberteeth at the market", cheapestOption+55000];
           }
           break;
         }
@@ -210,12 +203,12 @@ export class ImbumentsComponent implements OnInit{
 
           if (cheapestOption === this.goldToken * 6) {
             result = ["Exchange all materials from gold tokens", cheapestOption+150000];
-          } else if (vexclawTalonPrice + (this.goldToken*4) < sabertoothPrice + protectiveCharmPrice + vexclawTalonPrice+150000) {
+          } else if (vexclawTalonPrice + (this.goldToken*4) < cheapestOption) {
             result = ["Buy the vexclaw talons at market and exchange gold token for protective charms and saberteeth", vexclawTalonPrice + (this.goldToken*4)+150000];
-          } else if (sabertoothPrice + vexclawTalonPrice + (this.goldToken*2) < vexclawTalonPrice + (this.goldToken*4)) {
+          } else if (sabertoothPrice + vexclawTalonPrice + (this.goldToken*2) < cheapestOption) {
             result = ["Buy the vexclaw talons and saberteeth at market and exchange gold token for protective charms", sabertoothPrice + vexclawTalonPrice + (this.goldToken*2)+150000];
           } else {
-            result = ["Buy all material from market", protectiveCharmPrice + sabertoothPrice + vexclawTalonPrice+150000];
+            result = ["Buy all material from market", cheapestOption+150000];
           }
           break;
         }
